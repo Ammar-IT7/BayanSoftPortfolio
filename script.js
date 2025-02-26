@@ -16,65 +16,104 @@ window.addEventListener('load', function() {
     }
     metaThemeColor.content = themeColor;
 })();
-// تبديل الكلمات المتحركة
-let words = document.querySelectorAll(".word");
+// Enhanced Word Animation
+document.addEventListener('DOMContentLoaded', function() {
+    // تبديل الكلمات المتحركة
+    let words = document.querySelectorAll('.word');
+    let currentWordIndex = 0;
+    let maxWordIndex = words.length - 1;
+    let animationDelay = 4000; // الوقت بين كل تغيير
 
-// لم نعد بحاجة إلى تقسيم الكلمات إلى حروف
-// بدلاً من ذلك سنجعل كل كلمة كاملة متحركة
-words.forEach((word) => {
-// إضافة صنف إضافي لكل كلمة لتسهيل التنسيق
-word.classList.add("word-animated");
+    // إعداد الكلمات
+    words.forEach((word) => {
+        word.style.opacity = "0";
+        word.style.display = "none";
+    });
 
-// جعل جميع الكلمات مخفية في البداية
-word.style.opacity = "0";
-word.style.display = "none";
+    // إظهار الكلمة الأولى
+    showWord(0);
+
+    // وظيفة إظهار الكلمة
+    function showWord(index) {
+        words[index].style.display = "block";
+        // ننتظر لحظة قصيرة حتى يتم تطبيق التنسيق
+        setTimeout(() => {
+            words[index].classList.add('visible');
+        }, 50);
+    }
+
+    // وظيفة إخفاء الكلمة
+    function hideWord(index) {
+        words[index].classList.remove('visible');
+        // ننتظر حتى تنتهي الحركة ثم نخفي الكلمة تماماً
+        setTimeout(() => {
+            words[index].style.display = "none";
+        }, 500);
+    }
+
+    // التبديل بين الكلمات
+    function changeWord() {
+        hideWord(currentWordIndex);
+        
+        // تحديد الكلمة التالية
+        currentWordIndex = currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
+        
+        // ننتظر حتى تختفي الكلمة السابقة ثم نظهر الكلمة الجديدة
+        setTimeout(() => {
+            showWord(currentWordIndex);
+        }, 600);
+    }
+
+    // بدء التبديل بشكل دوري
+    setInterval(changeWord, animationDelay);
+
+    // إضافة تأثيرات تفاعلية إضافية
+    
+    // تأثير تفاعلي لصورة الشعار عند تحريك الماوس
+    const imgBox = document.querySelector('.img-box');
+    const homeSection = document.querySelector('.home');
+    
+    if (imgBox && homeSection) {
+        homeSection.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth - 0.5;
+            const y = e.clientY / window.innerHeight - 0.5;
+            
+            // تحريك الصورة بشكل خفيف حسب موقع المؤشر
+            imgBox.style.transform = `perspective(1000px) rotateY(${x * 10}deg) rotateX(${y * -10}deg) translateZ(20px)`;
+        });
+        
+        // إعادة الصورة لوضعها الأصلي عند مغادرة القسم
+        homeSection.addEventListener('mouseleave', () => {
+            imgBox.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(20px)';
+        });
+    }
+    
+    // تأثير الظهور التدريجي للعناصر عند التمرير
+    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+    
+    // وظيفة للتحقق من وجود العنصر في نطاق الرؤية
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8
+        );
+    }
+    
+    // وظيفة تحقق من العناصر المرئية وتظهرها بشكل تدريجي
+    function checkVisibleElements() {
+        scrollRevealElements.forEach(element => {
+            if (isInViewport(element) && !element.classList.contains('reveal-visible')) {
+                element.classList.add('reveal-visible');
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    }
+    
+    // تنفيذ الفحص عند تحميل الصفحة وعند التمرير
+    window.addEventListener('load', checkVisibleElements);
+    window.addEventListener('scroll', checkVisibleElements);
 });
-
-let currentWordIndex = 0;
-let maxWordIndex = words.length - 1;
-
-// إظهار الكلمة الأولى
-words[currentWordIndex].style.opacity = "1";
-words[currentWordIndex].style.display = "block";
-words[currentWordIndex].classList.add("visible");
-
-let changeText = () => {
-let currentWord = words[currentWordIndex];
-let nextWordIndex = currentWordIndex === maxWordIndex ? 0 : currentWordIndex + 1;
-let nextWord = words[nextWordIndex];
-
-// تأثير خروج الكلمة الحالية
-currentWord.classList.remove("visible");
-currentWord.classList.add("exit");
-
-// تأثير انتظار قبل إظهار الكلمة التالية
-setTimeout(() => {
-// إخفاء الكلمة الحالية تماماً
-currentWord.style.opacity = "0";
-currentWord.style.display = "none";
-currentWord.classList.remove("exit");
-
-// إظهار الكلمة التالية
-nextWord.style.display = "block";
-nextWord.classList.add("enter");
-
-// التأكد من أن الكلمة مرئية
-setTimeout(() => {
-    nextWord.style.opacity = "1";
-    nextWord.classList.remove("enter");
-    nextWord.classList.add("visible");
-}, 50);
-}, 600);
-
-// تحديث المؤشر إلى الكلمة التالية
-currentWordIndex = nextWordIndex;
-};
-
-// بدء التغيير الأول
-changeText();
-
-// تعيين فاصل زمني للتغيير المستمر (تم زيادة الوقت قليلاً)
-setInterval(changeText, 4500);
 // Initialize Swiper for testimonials
 const testimonialSwiper = new Swiper('.testimonial-slider', {
     slidesPerView: 1,
