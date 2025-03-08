@@ -35,7 +35,7 @@
             <li><a href="#services">خدماتنا</a></li>
             <li><a href="#partners">شركاء النجاح</a></li>
             <li><a href="#portfolio">مشاريعنا</a></li>
-            <li><a href="#testimonials">آراء العملاء</a></li>
+            <li><a href="#partners">آراء العملاء</a></li>
             <li><a href="#contact">تواصل معنا</a></li>
         </ul>
         <div id="menu-icon" class="bx bx-menu"></div>
@@ -220,13 +220,13 @@
         
         <div class="corner-element top-left">
             <svg viewBox="0 0 100 100" width="80" height="80">
-                <path d="M0,0 L100,0 L100,20 C60,20 20,60 20,100 L0,100 L0,0 Z" fill="rgba(226, 140, 29, 0.1)"/>
+                <path d="M0,0 L100,0 L100,20 C60,20 20,60 20,100 L0,100 L0,0 Z" fill="rgba(208, 63, 76, 0.2)"/>
             </svg>
         </div>
         
         <div class="corner-element bottom-right">
             <svg viewBox="0 0 100 100" width="80" height="80">
-                <path d="M100,100 L0,100 L0,80 C40,80 80,40 80,0 L100,0 L100,100 Z" fill="rgba(226, 140, 29, 0.1)"/>
+                <path d="M100,100 L0,100 L0,80 C40,80 80,40 80,0 L100,0 L100,100 Z" fill="rgba(208, 63, 76, 0.2)"/>
             </svg>
         </div>
     </section>
@@ -337,362 +337,729 @@
     <!-- قسم شركائنا وعملائنا -->
     <section id="partners" class="partners">
         <div class="partners-header">
-        <span class="partners-eyebrow">شركاء نجاحنا</span>
-        <h2 class="partners-title">أفضل العملاء والشركات التي نعتز بثقتها</h2>
-        <div class="partners-underline"></div>
+            <span class="partners-eyebrow">شركاء نجاحنا</span>
+            <h2 class="partners-title">أفضل العملاء والشركات التي نعتز بثقتها</h2>
+            <div class="partners-underline"></div>
+            <p class="partners-subtitle">نفخر بشراكتنا مع نخبة من الشركات الرائدة في مختلف المجالات</p>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="partners-filter">
+            <button class="filter-btn active" data-filter="all">جميع العملاء</button>
+            <button class="filter-btn" data-filter="tech">العقارات</button>
+            <button class="filter-btn" data-filter="finance">الخدمات المالية</button>
+            <button class="filter-btn" data-filter="retail">التجزئة</button>
+            <button class="filter-btn" data-filter="industrial">الصناعة</button>
+            <button class="filter-btn" data-filter="healthcare">الرعاية الصحية</button>
         </div>
         
         <div class="partners-container">
-        <div class="partners-grid">
-            <!-- Partner Cards -->
-            <div class="partner-card" data-category="tech">
-            <div class="partner-card-inner">
-                <div class="partner-icon">
-                <i class='bx bxs-building-house'></i>
+            <div class="partners-grid">
+                <!-- Partner Cards -->
+                <div class="partner-card" data-category="tech">
+                    <div class="partner-card-inner">
+                        <div class="partner-icon">
+                            <i class='bx bxs-building-house'></i>
+                        </div>
+                        <span class="partner-highlight">شريك موثوق</span>
+                        <h3 class="partner-name">شركة الإسكان الحديثة</h3>
+                        <p class="partner-description">شريك رئيسي في مشاريع البناء والإسكان منذ 2018</p>
+                        <div class="partner-details">
+                            <span class="partner-tag">العقارات</span>
+                            <span class="partner-duration">5+ سنوات</span>
+                        </div>
+                        <div class="partner-overlay">
+                            <div class="partner-overlay-content">
+                                <h4>المشاريع المشتركة</h4>
+                                <ul>
+                                    <li>تطوير برج السكن الحديث</li>
+                                    <li>تحديث أنظمة البناء الذكي</li>
+                                </ul>
+                                <button class="btn primary-btn">عرض التفاصيل</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="partner-name">شركة الإسكان الحديثة</h3>
-                <p class="partner-description">شريك رئيسي في مشاريع البناء والإسكان منذ 2018</p>
-                <div class="partner-details">
-                <span class="partner-tag">العقارات</span>
-                <span class="partner-duration">5+ سنوات</span>
+                
+                <div class="partner-card" data-category="finance">
+                    <div class="partner-card-inner">
+                        <div class="partner-icon">
+                            <i class='bx bxs-bank'></i>
+                        </div>
+                        <h3 class="partner-name">البنك الوطني</h3>
+                        <p class="partner-description">شراكة استراتيجية في الخدمات المالية والمصرفية</p>
+                        <div class="partner-details">
+                            <span class="partner-tag">الخدمات المالية</span>
+                            <span class="partner-duration">3+ سنوات</span>
+                        </div>
+                        <div class="partner-overlay">
+                            <div class="partner-overlay-content">
+                                <h4>المشاريع المشتركة</h4>
+                                <ul>
+                                    <li>تطوير منصة الخدمات المصرفية الرقمية</li>
+                                    <li>أنظمة الدفع الإلكتروني المتكاملة</li>
+                                </ul>
+                                <button class="btn primary-btn">عرض التفاصيل</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                
+                <div class="partner-card featured" data-category="retail">
+                    <div class="partner-card-inner">
+                        <div class="partner-icon-wrapper">
+                            <div class="partner-icon">
+                                <i class='bx bxs-store'></i>
+                            </div>
+                        </div>
+                        <span class="partner-badge">شريك متميز</span>
+                        <h3 class="partner-name">متاجر الخليج</h3>
+                        <p class="partner-description">سلسلة متاجر رائدة في مجال التجزئة على مستوى المنطقة</p>
+                        <div class="partner-details">
+                            <span class="partner-tag">التجزئة</span>
+                            <span class="partner-duration">7+ سنوات</span>
+                        </div>
+                        <div class="partner-overlay">
+                            <div class="partner-overlay-content">
+                                <h4>المشاريع المشتركة</h4>
+                                <ul>
+                                    <li>منصة التجارة الإلكترونية الموحدة</li>
+                                    <li>نظام إدارة سلاسل التوريد</li>
+                                    <li>تطبيقات الهواتف الذكية للتسوق</li>
+                                </ul>
+                                <button class="btn primary-btn">عرض التفاصيل</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="partner-card" data-category="industrial">
+                    <div class="partner-card-inner">
+                        <div class="partner-icon">
+                            <i class='bx bxs-factory'></i>
+                        </div>
+                        <h3 class="partner-name">الشركة الصناعية المتحدة</h3>
+                        <p class="partner-description">رائدة في مجال التصنيع والإنتاج الصناعي</p>
+                        <div class="partner-details">
+                            <span class="partner-tag">الصناعة</span>
+                            <span class="partner-duration">4+ سنوات</span>
+                        </div>
+                        <div class="partner-overlay">
+                            <div class="partner-overlay-content">
+                                <h4>المشاريع المشتركة</h4>
+                                <ul>
+                                    <li>أنظمة أتمتة خطوط الإنتاج</li>
+                                    <li>تحسين عمليات تخطيط الموارد</li>
+                                </ul>
+                                <button class="btn primary-btn">عرض التفاصيل</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="partner-card" data-category="education">
+                    <div class="partner-card-inner">
+                        <div class="partner-icon">
+                            <i class='bx bxs-graduation'></i>
+                        </div>
+                        <h3 class="partner-name">معاهد المستقبل</h3>
+                        <p class="partner-description">مؤسسة تعليمية رائدة في تطوير المهارات المهنية</p>
+                        <div class="partner-details">
+                            <span class="partner-tag">التعليم</span>
+                            <span class="partner-duration">2+ سنوات</span>
+                        </div>
+                        <div class="partner-overlay">
+                            <div class="partner-overlay-content">
+                                <h4>المشاريع المشتركة</h4>
+                                <ul>
+                                    <li>تطوير منصات التعلم الإلكتروني</li>
+                                    <li>أنظمة إدارة العملية التعليمية</li>
+                                </ul>
+                                <button class="btn primary-btn">عرض التفاصيل</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="partner-card" data-category="healthcare">
+                    <div class="partner-card-inner">
+                        <div class="partner-icon">
+                            <i class='bx bxs-hospital'></i>
+                        </div>
+                        <h3 class="partner-name">مستشفيات الرعاية</h3>
+                        <p class="partner-description">مجموعة طبية متميزة في مجال الرعاية الصحية</p>
+                        <div class="partner-details">
+                            <span class="partner-tag">الرعاية الصحية</span>
+                            <span class="partner-duration">3+ سنوات</span>
+                        </div>
+                        <div class="partner-overlay">
+                            <div class="partner-overlay-content">
+                                <h4>المشاريع المشتركة</h4>
+                                <ul>
+                                    <li>أنظمة إدارة المعلومات الصحية</li>
+                                    <li>منصات الاستشارات الطبية عن بعد</li>
+                                </ul>
+                                <button class="btn primary-btn">عرض التفاصيل</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="partner-card" data-category="finance">
-            <div class="partner-card-inner">
-                <div class="partner-icon">
-                <i class='bx bxs-bank'></i>
+        <div id="testimonials" class="testimonials-container">
+            <h3 class="testimonials-title">ماذا يقول عملاؤنا عنا</h3>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                        </div>
+                        <i class="quote-icon bx bxs-quote-alt-left"></i>
+                        <p class="testimonial-text">تعاونا مع الشركة في العديد من المشاريع الاستراتيجية التي أثمرت عن نتائج متميزة تفوق التوقعات. نحن فخورون بهذه الشراكة المثمرة.</p>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <i class='bx bxs-user-circle'></i>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">محمد العبدالله</h4>
+                                <p class="author-title">المدير التنفيذي - متاجر الخليج</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="partner-name">البنك الوطني</h3>
-                <p class="partner-description">شراكة استراتيجية في الخدمات المالية والمصرفية</p>
-                <div class="partner-details">
-                <span class="partner-tag">الخدمات المالية</span>
-                <span class="partner-duration">3+ سنوات</span>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star-half'></i>
+                        </div>
+                        <i class="quote-icon bx bxs-quote-alt-left"></i>
+                        <p class="testimonial-text">الاحترافية والالتزام بالمواعيد النهائية هما أهم ما يميز تعاملنا مع الشركة. نتطلع إلى مزيد من التعاون في المستقبل.</p>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <i class='bx bxs-user-circle'></i>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">سارة المالكي</h4>
+                                <p class="author-title">مديرة التسويق - البنك الوطني</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                        </div>
+                        <i class="quote-icon bx bxs-quote-alt-left"></i>
+                        <p class="testimonial-text">نقدر عالياً الخبرة التقنية والمعرفة المتميزة التي قدمها فريق العمل خلال تنفيذ مشروعنا الضخم في مجال التصنيع.</p>
+                        <div class="testimonial-author">
+                            <div class="author-image">
+                                <i class='bx bxs-user-circle'></i>
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">خالد السليمان</h4>
+                                <p class="author-title">مدير العمليات - الشركة الصناعية المتحدة</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="partner-card featured" data-category="retail">
-            <div class="partner-card-inner">
-                <div class="partner-icon">
-                <i class='bx bxs-store'></i>
-                </div>
-                <h3 class="partner-name">متاجر الخليج</h3>
-                <p class="partner-description">سلسلة متاجر رائدة في مجال التجزئة على مستوى المنطقة</p>
-                <div class="partner-details">
-                <span class="partner-tag">التجزئة</span>
-                <span class="partner-duration">7+ سنوات</span>
-                </div>
-            </div>
-            </div>
-            
-            <div class="partner-card" data-category="industrial">
-            <div class="partner-card-inner">
-                <div class="partner-icon">
-                <i class='bx bxs-factory'></i>
-                </div>
-                <h3 class="partner-name">الشركة الصناعية المتحدة</h3>
-                <p class="partner-description">رائدة في مجال التصنيع والإنتاج الصناعي</p>
-                <div class="partner-details">
-                <span class="partner-tag">الصناعة</span>
-                <span class="partner-duration">4+ سنوات</span>
-                </div>
-            </div>
-            </div>
-            
-            <div class="partner-card" data-category="education">
-            <div class="partner-card-inner">
-                <div class="partner-icon">
-                <i class='bx bxs-graduation'></i>
-                </div>
-                <h3 class="partner-name">معاهد المستقبل</h3>
-                <p class="partner-description">مؤسسة تعليمية رائدة في تطوير المهارات المهنية</p>
-                <div class="partner-details">
-                <span class="partner-tag">التعليم</span>
-                <span class="partner-duration">2+ سنوات</span>
-                </div>
-            </div>
-            </div>
-            
-            <div class="partner-card" data-category="healthcare">
-            <div class="partner-card-inner">
-                <div class="partner-icon">
-                <i class='bx bxs-hospital'></i>
-                </div>
-                <h3 class="partner-name">مستشفيات الرعاية</h3>
-                <p class="partner-description">مجموعة طبية متميزة في مجال الرعاية الصحية</p>
-                <div class="partner-details">
-                <span class="partner-tag">الرعاية الصحية</span>
-                <span class="partner-duration">3+ سنوات</span>
-                </div>
-            </div>
+            <div class="testimonials-controls">
+                <button class="testimonial-arrow prev" aria-label="السابق">
+                    <i class='bx bx-chevron-right'></i>
+                </button>
+                <div class="testimonial-dots"></div>
+                <button class="testimonial-arrow next" aria-label="التالي">
+                    <i class='bx bx-chevron-left'></i>
+                </button>
             </div>
         </div>
-        </div>
-        
-        <div class="testimonials-container">
-        <div class="testimonials-slider">
-            <div class="testimonial-card">
-            <div class="testimonial-content">
-                <i class="quote-icon bx bxs-quote-alt-left"></i>
-                <p class="testimonial-text">تعاونا مع الشركة في العديد من المشاريع الاستراتيجية التي أثمرت عن نتائج متميزة تفوق التوقعات. نحن فخورون بهذه الشراكة المثمرة.</p>
-                <div class="testimonial-author">
-                <div class="author-image">
-                    <i class='bx bxs-user-circle'></i>
-                </div>
-                <div class="author-info">
-                    <h4 class="author-name">محمد العبدالله</h4>
-                    <p class="author-title">المدير التنفيذي - متاجر الخليج</p>
-                </div>
-                </div>
-            </div>
-            </div>
-            
-            <div class="testimonial-card">
-            <div class="testimonial-content">
-                <i class="quote-icon bx bxs-quote-alt-left"></i>
-                <p class="testimonial-text">الاحترافية والالتزام بالمواعيد النهائية هما أهم ما يميز تعاملنا مع الشركة. نتطلع إلى مزيد من التعاون في المستقبل.</p>
-                <div class="testimonial-author">
-                <div class="author-image">
-                    <i class='bx bxs-user-circle'></i>
-                </div>
-                <div class="author-info">
-                    <h4 class="author-name">سارة المالكي</h4>
-                    <p class="author-title">مديرة التسويق - البنك الوطني</p>
-                </div>
-                </div>
-            </div>
-            </div>
-            
-            <div class="testimonial-card">
-            <div class="testimonial-content">
-                <i class="quote-icon bx bxs-quote-alt-left"></i>
-                <p class="testimonial-text">نقدر عالياً الخبرة التقنية والمعرفة المتميزة التي قدمها فريق العمل خلال تنفيذ مشروعنا الضخم في مجال التصنيع.</p>
-                <div class="testimonial-author">
-                <div class="author-image">
-                    <i class='bx bxs-user-circle'></i>
-                </div>
-                <div class="author-info">
-                    <h4 class="author-name">خالد السليمان</h4>
-                    <p class="author-title">مدير العمليات - الشركة الصناعية المتحدة</p>
-                </div>
-                </div>
-            </div>
+
+        <div class="partner-cta-container">
+            <div class="cta-content">
+                <h3 class="partner-cta-title">هل تريد أن تكون ضمن قائمة عملائنا المميزين؟</h3>
+                <p class="partner-cta-text">انضم إلى مجموعة الشركات الرائدة التي تثق بنا لتحقيق أهدافها</p>
+                <button class="btn primary-btn">تواصل معنا الآن</button>
             </div>
         </div>
-        
-        <div class="testimonials-controls">
-            <button class="testimonial-arrow prev" aria-label="السابق">
-            <i class='bx bx-chevron-left'></i>
-            </button>
-            <div class="testimonial-dots"></div>
-            <button class="testimonial-arrow next" aria-label="التالي">
-            <i class='bx bx-chevron-right'></i>
-            </button>
-        </div>
-        </div>
-    
+
         <div class="brands-ticker">
-        <div class="ticker-wrapper">
-            <div class="ticker-track">
-            <!-- Brand Logos -->
-            <div class="ticker-item"><i class='bx bxs-building'></i></div>
-            <div class="ticker-item"><i class='bx bxs-bank'></i></div>
-            <div class="ticker-item"><i class='bx bxs-store-alt'></i></div>
-            <div class="ticker-item"><i class='bx bxs-factory'></i></div>
-            <div class="ticker-item"><i class='bx bxs-institution'></i></div>
-            <div class="ticker-item"><i class='bx bxs-car-garage'></i></div>
-            <div class="ticker-item"><i class='bx bxs-hospital'></i></div>
-            <div class="ticker-item"><i class='bx bxs-school'></i></div>
-            <!-- Duplicated for infinite effect -->
-            <div class="ticker-item"><i class='bx bxs-building'></i></div>
-            <div class="ticker-item"><i class='bx bxs-bank'></i></div>
-            <div class="ticker-item"><i class='bx bxs-store-alt'></i></div>
-            <div class="ticker-item"><i class='bx bxs-factory'></i></div>
-            <div class="ticker-item"><i class='bx bxs-institution'></i></div>
-            <div class="ticker-item"><i class='bx bxs-car-garage'></i></div>
-            <div class="ticker-item"><i class='bx bxs-hospital'></i></div>
-            <div class="ticker-item"><i class='bx bxs-school'></i></div>
+            <h4 class="ticker-title">نفخر بالتعاون مع أكثر من 100 علامة تجارية</h4>
+            <div class="ticker-wrapper">
+                <div class="ticker-track">
+                    <!-- Brand Logos -->
+                    <div class="ticker-item"><i class='bx bxs-building'></i><span>عقارات المدينة</span></div>
+                    <div class="ticker-item"><i class='bx bxs-bank'></i><span>البنك الدولي</span></div>
+                    <div class="ticker-item"><i class='bx bxs-store-alt'></i><span>متاجر الخليج</span></div>
+                    <div class="ticker-item"><i class='bx bxs-factory'></i><span>شركة التصنيع</span></div>
+                    <div class="ticker-item"><i class='bx bxs-institution'></i><span>مؤسسة التميز</span></div>
+                    <div class="ticker-item"><i class='bx bxs-car-garage'></i><span>السيارات المتحدة</span></div>
+                    <div class="ticker-item"><i class='bx bxs-hospital'></i><span>مستشفى الرعاية</span></div>
+                    <div class="ticker-item"><i class='bx bxs-school'></i><span>معاهد المستقبل</span></div>
+                    <!-- Duplicated for infinite effect -->
+                    <div class="ticker-item"><i class='bx bxs-building'></i><span>عقارات المدينة</span></div>
+                    <div class="ticker-item"><i class='bx bxs-bank'></i><span>البنك الدولي</span></div>
+                    <div class="ticker-item"><i class='bx bxs-store-alt'></i><span>متاجر الخليج</span></div>
+                    <div class="ticker-item"><i class='bx bxs-factory'></i><span>شركة التصنيع</span></div>
+                    <div class="ticker-item"><i class='bx bxs-institution'></i><span>مؤسسة التميز</span></div>
+                    <div class="ticker-item"><i class='bx bxs-car-garage'></i><span>السيارات المتحدة</span></div>
+                    <div class="ticker-item"><i class='bx bxs-hospital'></i><span>مستشفى الرعاية</span></div>
+                    <div class="ticker-item"><i class='bx bxs-school'></i><span>معاهد المستقبل</span></div>
+                </div>
             </div>
-        </div>
         </div>
     </section>
     <!-- قسم المشاريع -->
     <section id="portfolio" class="portfolio">
-        <div class="main-text scroll-scale">
-            <span class="subtitle">أعمالنا السابقة</span>
-            <h2>مشاريعنا المميزة</h2>
-            <p>استعرض أحدث أعمالنا وإنجازاتنا التي تعكس خبرتنا وكفاءتنا في تقديم حلول تقنية متميزة</p>
+        <div class="portfolio-bg-elements">
+            <div class="bg-shape shape-1"></div>
+            <div class="bg-shape shape-2"></div>
+            <div class="bg-shape shape-3"></div>
         </div>
 
         <div class="container">
-            <div class="filter-buttons scroll-scale">
-                <button class="button active" data-filter="all">جميع المشاريع</button>
-                <button class="button" data-filter=".mobile">تطبيقات الجوال</button>
-                <button class="button" data-filter=".web">تطوير الويب</button>
-                <button class="button" data-filter=".design">تصميم واجهات</button>
+            <div class="main-text scroll-scale">
+                <span class="subtitle">أعمالنا السابقة</span>
+                <h2>مشاريعنا المميزة</h2>
+                <p>استعرض أحدث أعمالنا وإنجازاتنا التي تعكس خبرتنا وكفاءتنا في تقديم حلول تقنية متميزة</p>
             </div>
 
-            <div class="portfolio-gallery scroll-bottom">
-                <div class="port-box mix mobile">
+            <div class="filter-buttons-container scroll-scale">
+                <div class="filter-buttons">
+                    <button class="button active" data-filter="all">
+                        <span class="button-text">جميع المشاريع</span>
+                        <span class="button-count">6</span>
+                    </button>
+                    <button class="button" data-filter=".mobile">
+                        <span class="button-text">تطبيقات الجوال</span>
+                        <span class="button-count">2</span>
+                    </button>
+                    <button class="button" data-filter=".web">
+                        <span class="button-text">تطوير الويب</span>
+                        <span class="button-count">2</span>
+                    </button>
+                    <button class="button" data-filter=".design">
+                        <span class="button-text">تصميم واجهات</span>
+                        <span class="button-count">2</span>
+                    </button>
+                </div>
+                <div class="search-container">
+                    <input type="text" id="portfolioSearch" placeholder="ابحث عن مشروع..." />
+                    <i class='bx bx-search'></i>
+                </div>
+            </div>
+
+            <div class="portfolio-counter scroll-scale">
+                <p>عرض <span id="visibleProjectsCount">6</span> من <span id="totalProjectsCount">6</span> مشاريع</p>
+            </div>
+
+            <div class="portfolio-gallery scroll-bottom" id="portfolioGallery">
+                <div class="port-box mix mobile" data-order="1" data-title="تطبيق المتجر الذكي">
                     <div class="port-image">
                         <img src="images/portfolio1.svg" alt="تطبيق المتجر الذكي">
+                        <div class="port-overlay"></div>
+                        <div class="port-badges">
+                            <span class="port-category">تطبيقات الجوال</span>
+                            <span class="port-date">أغسطس 2024</span>
+                        </div>
+                        <div class="port-quick-view">
+                            <button class="quickview-btn" data-id="1" title="عرض سريع"><i class='bx bx-fullscreen'></i></button>
+                        </div>
                     </div>
                     <div class="port-content">
-                        <h3>تطبيق المتجر الذكي</h3>
+                        <div class="port-title-wrapper">
+                            <h3>تطبيق المتجر الذكي</h3>
+                            <div class="port-rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star-half'></i>
+                            </div>
+                        </div>
+                        <div class="port-tech-tags">
+                            <span>React Native</span>
+                            <span>Firebase</span>
+                        </div>
                         <p>تطبيق للتسوق الإلكتروني يوفر تجربة تسوق سلسة وسهلة للمستخدمين مع نظام دفع آمن ومتعدد الخيارات.</p>
-                        <a href="#" title="تطبيق المتجر الذكي" aria-label="عرض تفاصيل المشروع" class="portfolio-details" data-id="1"><i class="bx bx-link-external"></i></a>
+                        <div class="port-actions">
+                            <a href="#" class="portfolio-details-link btn primary-btn" data-id="1">
+                                <span>عرض التفاصيل</span>
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                            <button class="port-like-btn" aria-label="أعجبني">
+                                <i class='bx bx-heart'></i>
+                                <span class="like-count">42</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="port-progress">
+                        <div class="progress-label">اكتمال المشروع</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%">100%</div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="port-box mix web">
+                <div class="port-box mix web" data-order="2" data-title="منصة الخدمات الرقمية">
                     <div class="port-image">
                         <img src="images/portfolio2.svg" alt="منصة الخدمات الرقمية">
+                        <div class="port-overlay"></div>
+                        <div class="port-badges">
+                            <span class="port-category">تطوير الويب</span>
+                            <span class="port-date">يوليو 2024</span>
+                        </div>
+                        <div class="port-quick-view">
+                            <button class="quickview-btn" data-id="2" title="عرض سريع"><i class='bx bx-fullscreen'></i></button>
+                        </div>
                     </div>
                     <div class="port-content">
-                        <h3>منصة الخدمات الرقمية</h3>
+                        <div class="port-title-wrapper">
+                            <h3>منصة الخدمات الرقمية</h3>
+                            <div class="port-rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bx-star'></i>
+                            </div>
+                        </div>
+                        <div class="port-tech-tags">
+                            <span>Vue.js</span>
+                            <span>Laravel</span>
+                        </div>
                         <p>منصة متكاملة تقدم مجموعة من الخدمات الرقمية للشركات والأفراد مع واجهة مستخدم بسيطة وسهلة الاستخدام.</p>
-                        <a href="#" title="منصة الخدمات الرقمية" aria-label="عرض تفاصيل المشروع" class="portfolio-details" data-id="2"><i class="bx bx-link-external"></i></a>
+                        <div class="port-actions">
+                            <a href="#" class="portfolio-details-link btn primary-btn" data-id="2">
+                                <span>عرض التفاصيل</span>
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                            <button class="port-like-btn" aria-label="أعجبني">
+                                <i class='bx bx-heart'></i>
+                                <span class="like-count">38</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="port-progress">
+                        <div class="progress-label">اكتمال المشروع</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%">100%</div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="port-box mix design">
+                <div class="port-box mix design" data-order="3" data-title="هوية بصرية لشركة ناشئة">
                     <div class="port-image">
                         <img src="images/portfolio3.svg" alt="هوية بصرية لشركة ناشئة">
+                        <div class="port-overlay"></div>
+                        <div class="port-badges">
+                            <span class="port-category">تصميم واجهات</span>
+                            <span class="port-date">يونيو 2024</span>
+                        </div>
+                        <div class="port-quick-view">
+                            <button class="quickview-btn" data-id="3" title="عرض سريع"><i class='bx bx-fullscreen'></i></button>
+                        </div>
                     </div>
                     <div class="port-content">
-                        <h3>هوية بصرية لشركة ناشئة</h3>
+                        <div class="port-title-wrapper">
+                            <h3>هوية بصرية لشركة ناشئة</h3>
+                            <div class="port-rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                        </div>
+                        <div class="port-tech-tags">
+                            <span>Figma</span>
+                            <span>Illustrator</span>
+                        </div>
                         <p>تصميم هوية بصرية كاملة لشركة ناشئة في مجال التكنولوجيا تشمل الشعار والألوان والخطوط وعناصر التصميم.</p>
-                        <a href="#" title="هوية بصرية لشركة ناشئة" aria-label="عرض تفاصيل المشروع" class="portfolio-details" data-id="3"><i class="bx bx-link-external"></i></a>
+                        <div class="port-actions">
+                            <a href="#" class="portfolio-details-link btn primary-btn" data-id="3">
+                                <span>عرض التفاصيل</span>
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                            <button class="port-like-btn liked" aria-label="أعجبني">
+                                <i class='bx bxs-heart'></i>
+                                <span class="like-count">56</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="port-progress">
+                        <div class="progress-label">اكتمال المشروع</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%">100%</div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="port-box mix mobile">
+                <div class="port-box mix mobile" data-order="4" data-title="تطبيق إدارة المهام">
                     <div class="port-image">
                         <img src="images/portfolio4.svg" alt="تطبيق إدارة المهام">
+                        <div class="port-overlay"></div>
+                        <div class="port-badges">
+                            <span class="port-category">تطبيقات الجوال</span>
+                            <span class="port-date">مايو 2024</span>
+                        </div>
+                        <div class="port-quick-view">
+                            <button class="quickview-btn" data-id="4" title="عرض سريع"><i class='bx bx-fullscreen'></i></button>
+                        </div>
                     </div>
                     <div class="port-content">
-                        <h3>تطبيق إدارة المهام</h3>
+                        <div class="port-title-wrapper">
+                            <h3>تطبيق إدارة المهام</h3>
+                            <div class="port-rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star-half'></i>
+                                <i class='bx bx-star'></i>
+                            </div>
+                        </div>
+                        <div class="port-tech-tags">
+                            <span>Flutter</span>
+                            <span>Firebase</span>
+                        </div>
                         <p>تطبيق ذكي لإدارة المهام والمشاريع يساعد المستخدمين على تنظيم وقتهم وزيادة إنتاجيتهم بطريقة سهلة وفعالة.</p>
-                        <a href="#" title="تطبيق إدارة المهام" aria-label="عرض تفاصيل المشروع" class="portfolio-details" data-id="4"><i class="bx bx-link-external"></i></a>
+                        <div class="port-actions">
+                            <a href="#" class="portfolio-details-link btn primary-btn" data-id="4">
+                                <span>عرض التفاصيل</span>
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                            <button class="port-like-btn" aria-label="أعجبني">
+                                <i class='bx bx-heart'></i>
+                                <span class="like-count">31</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="port-progress">
+                        <div class="progress-label">اكتمال المشروع</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%">90%</div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="port-box mix web">
+                <div class="port-box mix web" data-order="5" data-title="لوحة تحكم إحصائية">
                     <div class="port-image">
                         <img src="images/portfolio5.svg" alt="لوحة تحكم إحصائية">
+                        <div class="port-overlay"></div>
+                        <div class="port-badges">
+                            <span class="port-category">تطوير الويب</span>
+                            <span class="port-date">أبريل 2024</span>
+                        </div>
+                        <div class="port-quick-view">
+                            <button class="quickview-btn" data-id="5" title="عرض سريع"><i class='bx bx-fullscreen'></i></button>
+                        </div>
                     </div>
                     <div class="port-content">
-                        <h3>لوحة تحكم إحصائية</h3>
+                        <div class="port-title-wrapper">
+                            <h3>لوحة تحكم إحصائية</h3>
+                            <div class="port-rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star-half'></i>
+                            </div>
+                        </div>
+                        <div class="port-tech-tags">
+                            <span>React.js</span>
+                            <span>D3.js</span>
+                        </div>
                         <p>منصة تحليلية متكاملة تساعد الشركات على متابعة أدائها وتحليل البيانات وعرض المؤشرات الرئيسية بطريقة سهلة.</p>
-                        <a href="#" title="لوحة تحكم إحصائية" aria-label="عرض تفاصيل المشروع" class="portfolio-details" data-id="5"><i class="bx bx-link-external"></i></a>
+                        <div class="port-actions">
+                            <a href="#" class="portfolio-details-link btn primary-btn" data-id="5">
+                                <span>عرض التفاصيل</span>
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                            <button class="port-like-btn liked" aria-label="أعجبني">
+                                <i class='bx bxs-heart'></i>
+                                <span class="like-count">47</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="port-progress">
+                        <div class="progress-label">اكتمال المشروع</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%">95%</div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="port-box mix design">
+                <div class="port-box mix design" data-order="6" data-title="تصميم موقع شركة استشارات">
                     <div class="port-image">
                         <img src="images/portfolio6.svg" alt="تصميم موقع شركة استشارات">
+                        <div class="port-overlay"></div>
+                        <div class="port-badges">
+                            <span class="port-category">تصميم واجهات</span>
+                            <span class="port-date">مارس 2024</span>
+                        </div>
+                        <div class="port-quick-view">
+                            <button class="quickview-btn" data-id="6" title="عرض سريع"><i class='bx bx-fullscreen'></i></button>
+                        </div>
                     </div>
                     <div class="port-content">
-                        <h3>تصميم موقع شركة استشارات</h3>
+                        <div class="port-title-wrapper">
+                            <h3>تصميم موقع شركة استشارات</h3>
+                            <div class="port-rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bx-star'></i>
+                            </div>
+                        </div>
+                        <div class="port-tech-tags">
+                            <span>WordPress</span>
+                            <span>CSS3</span>
+                        </div>
                         <p>تصميم موقع إلكتروني احترافي لشركة استشارات مالية مع هوية بصرية متكاملة تعكس قيم الشركة وتعزز ثقة العملاء.</p>
-                        <a href="#" title="تصميم موقع شركة استشارات" aria-label="عرض تفاصيل المشروع" class="portfolio-details" data-id="6"><i class="bx bx-link-external"></i></a>
+                        <div class="port-actions">
+                            <a href="#" class="portfolio-details-link btn primary-btn" data-id="6">
+                                <span>عرض التفاصيل</span>
+                                <i class="bx bx-link-external"></i>
+                            </a>
+                            <button class="port-like-btn" aria-label="أعجبني">
+                                <i class='bx bx-heart'></i>
+                                <span class="like-count">35</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="port-progress">
+                        <div class="progress-label">اكتمال المشروع</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%">100%</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- قسم آراء العملاء -->
-    <section id="testimonials" class="testimonials">
-        <div class="main-text scroll-scale">
-            <span class="subtitle">ماذا يقول عملاؤنا</span>
-            <h2>آراء العملاء</h2>
-            <p>اطلع على تجارب وآراء عملائنا الذين تعاملوا مع بيان سوفت وتعرف على تقييمهم لخدماتنا وجودة أعمالنا</p>
+            
+            <div class="portfolio-empty-state" id="emptyState">
+                <div class="empty-state-icon">
+                    <i class='bx bx-search-alt'></i>
+                </div>
+                <h3>لم يتم العثور على نتائج</h3>
+                <p>لم نتمكن من العثور على أي مشاريع تطابق معايير البحث الخاصة بك.</p>
+                <button id="resetSearch" class="btn-reset">إعادة ضبط البحث</button>
+            </div>
+
+            <div class="portfolio-actions scroll-scale">
+                <button class="btn primary-btn"id="loadMoreBtn">
+                    <span>عرض المزيد من المشاريع</span>
+                    <i class='bx bx-chevron-down btn-icon'></i>
+                </button>
+                <button class="btn outline-btn" id="viewOptionsBtn">
+                    <i class='bx bx-grid-alt btn-icon'></i>
+                    <span>خيارات العرض</span>
+                </button>
+            </div>
         </div>
         
-        <div class="container">
-            <div class="swiper-container testimonial-slider scroll-bottom">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="testimonial-slide">
-                            <div class="testimonial-content">
-                                <p>"تعاملت مع بيان سوفت في تطوير تطبيق للجوال وكانت التجربة رائعة من حيث الاحترافية والالتزام بالمواعيد وجودة العمل. أنصح بالتعامل معهم."</p>
-                                <div class="testimonial-rating">
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                </div>
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">
-                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e28c1d'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3EA%3C/text%3E%3C/svg%3E" alt="صورة العميل">
-                                </div>
-                                <div class="author-info">
-                                    <h4>أحمد الشمري</h4>
-                                    <p>المدير التنفيذي - شركة التقنية المتقدمة</p>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Quick View Modal -->
+        <div id="quickViewModal" class="quick-view-modal">
+            <div class="quick-view-content">
+                <button id="quickViewClose" class="quick-view-close" title="إغلاق العرض السريع"><i class='bx bx-x'></i></button>
+                <div class="quick-view-body" id="quickViewBody">
+                    <!-- Content will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Portfolio Details Modal -->
+        <div id="portfolioModal" class="portfolio-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-nav">
+                        <button id="prevProject" class="modal-nav-btn" aria-label="المشروع السابق">
+                            <i class='bx bx-chevron-right'></i>
+                        </button>
+                        <button id="nextProject" class="modal-nav-btn" aria-label="المشروع التالي">
+                            <i class='bx bx-chevron-left'></i>
+                        </button>
                     </div>
-                    
-                    <div class="swiper-slide">
-                        <div class="testimonial-slide">
-                            <div class="testimonial-content">
-                                <p>"قامت بيان سوفت بتطوير وتصميم موقعنا الإلكتروني بشكل احترافي ومتميز، وقد لاقى الموقع استحسان عملائنا وساهم في زيادة المبيعات بشكل ملحوظ."</p>
-                                <div class="testimonial-rating">
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star-half'></i>
-                                </div>
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">
-                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23b56d10'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3ES%3C/text%3E%3C/svg%3E" alt="صورة العميل">
-                                </div>
-                                <div class="author-info">
-                                    <h4>سارة القحطاني</h4>
-                                    <p>مديرة التسويق - مؤسسة الأفق الجديد</p>
-                                </div>
-                            </div>
-                        </div>
+                    <h2 id="modalTitle">تفاصيل المشروع</h2>
+                    <button id="modalClose1" class="modal-close" title="إغلاق العرض السريع"><i class='bx bx-x'></i></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Content will be loaded dynamically -->
+                </div>
+                <div class="modal-footer">
+                    <div class="modal-social">
+                        <span>مشاركة:</span>
+                        <a href="#" aria-label="مشاركة على فيسبوك"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" aria-label="مشاركة على تويتر"><i class='bx bxl-twitter'></i></a>
+                        <a href="#" aria-label="مشاركة على لينكد إن"><i class='bx bxl-linkedin'></i></a>
                     </div>
-                    
-                    <div class="swiper-slide">
-                        <div class="testimonial-slide">
-                            <div class="testimonial-content">
-                                <p>"الفريق في بيان سوفت متعاون ومحترف للغاية، استطاعوا فهم متطلباتنا بدقة وتنفيذها بشكل أفضل مما كنا نتوقع. سعداء جداً بالتعامل معهم."</p>
-                                <div class="testimonial-rating">
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                    <i class='bx bxs-star'></i>
-                                </div>
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">
-                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ff9f20'/%3E%3Ctext x='50' y='55' font-size='40' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'%3EM%3C/text%3E%3C/svg%3E" alt="صورة العميل">
-                                </div>
-                                <div class="author-info">
-                                    <h4>محمد العتيبي</h4>
-                                    <p>صاحب مشروع - متجر الحياة الذكية</p>
-                                </div>
-                            </div>
+                    <button id="modalCloseBtn" class="btn">إغلاق</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- View Options Menu -->
+        <div id="viewOptionsMenu" class="view-options-menu">
+            <div class="view-options-header">
+                <h3>خيارات العرض</h3>
+                <button id="closeViewOptions" title="إغلاق خيارات العرض"><i class='bx bx-x'></i></button>
+            </div>
+            <div class="view-options-body">
+                <div class="view-option">
+                    <label>طريقة العرض</label>
+                    <div class="toggle-buttons">
+                        <button class="toggle-btn active" data-view="grid"><i class='bx bx-grid-alt'></i> شبكة</button>
+                        <button class="toggle-btn" data-view="list"><i class='bx bx-list-ul'></i> قائمة</button>
+                    </div>
+                </div>
+                <div class="view-option">
+                    <label>حجم البطاقات</label>
+                    <div class="range-slider">
+                        <input type="range" min="1" max="3" value="2" id="cardSizeSlider" title="Adjust card size">
+                        <div class="range-labels">
+                            <span>صغير</span>
+                            <span>متوسط</span>
+                            <span>كبير</span>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-                
-                <!-- Add Navigation -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <div class="view-option">
+                    <label>ترتيب المشاريع</label>
+                    <select id="sortProjects" title="ترتيب المشاريع">
+                        <option value="newest">الأحدث أولاً</option>
+                        <option value="oldest">الأقدم أولاً</option>
+                        <option value="name-asc">أبجدي (أ-ي)</option>
+                        <option value="name-desc">أبجدي (ي-أ)</option>
+                        <option value="popular">الأكثر شعبية</option>
+                    </select>
+                </div>
+                <div class="view-option">
+                    <label>تأثيرات الحركة</label>
+                    <div class="toggle-switch">
+                        <label for="animationsToggle" class="sr-only">Toggle Animations</label>
+                        <input type="checkbox" id="animationsToggle" title="Toggle Animations" checked>
+                        <label for="animationsToggle"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="view-options-footer">
+                <button id="resetViewOptions" class="btn outline-btn">إعادة الضبط</button>
+                <button id="applyViewOptions" class="btn primary-btn">تطبيق</button>
             </div>
         </div>
     </section>
@@ -748,13 +1115,21 @@
                     </div>
                 </div>
                 
-                <div class="contact-social">
-                    <h4>تابعنا على مواقع التواصل</h4>
+                <div class="social-panel">
+                    <div class="social-headline">تابعنا على:</div>
                     <div class="social-icons">
-                        <a href="#" title="Instagram" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
-                        <a href="#" title="Twitter" aria-label="Twitter"><i class="bx bxl-twitter"></i></a>
-                        <a href="#" title="Facebook" aria-label="Facebook"><i class="bx bxl-facebook"></i></a>
-                        <a href="#" title="LinkedIn" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
+                        <a href="#" title="Instagram" aria-label="Instagram" class="social-icon instagram">
+                            <i class="bx bxl-instagram"></i>
+                        </a>
+                        <a href="#" title="Twitter" aria-label="Twitter" class="social-icon twitter">
+                            <i class="bx bxl-twitter"></i>
+                        </a>
+                        <a href="#" title="Facebook" aria-label="Facebook" class="social-icon facebook">
+                            <i class="bx bxl-facebook"></i>
+                        </a>
+                        <a href="#" title="LinkedIn" aria-label="LinkedIn" class="social-icon linkedin">
+                            <i class="bx bxl-linkedin"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -801,7 +1176,7 @@
     <!-- Modal Window for Portfolio Details -->
     <div class="modal" id="portfolioModal">
         <div class="modal-content">
-            <div class="modal-close" id="modalClose">
+            <div class="modal-close" id="modalClose2" title="إغلاق">
                 <i class='bx bx-x'></i>
             </div>
             <div class="modal-header">
