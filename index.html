@@ -230,55 +230,198 @@
             </svg>
         </div>
     </section>
-    <!-- قسم من نحن -->
-    <section id="about" class="about">
-
-        <!-- Dynamic Background -->
-    <div class="about-background">
-        <div class="gradient-sphere gradient-sphere-1"></div>
-        <div class="gradient-sphere gradient-sphere-2"></div>
-        <div class="pattern-grid"></div>
-        <div class="radial-gradient"></div>
-        <div class="animated-particles" id="particles-js"></div>
+<!-- قسم من نحن -->
+<section id="about" class="about">
+    <!-- Decorative Elements -->
+    <div class="about-background"></div>
+    <div class="about-pattern-dots about-pattern-dots-1"></div>
+    <div class="about-pattern-dots about-pattern-dots-2"></div>
+    
+    <div class="container">
+        <div class="about-wrapper">
+            <div class="about-img-container">
+                <img src="images/logo.png" alt="من نحن" class="about-img">
+            </div>
+            
+            <div class="about-content">
+                <span class="about-subtitle">تعرف علينا</span>
+                <h3>بيان سوفت - ابتكار يتجاوز الحدود</h3>
+                <p>بيان سوفت هي شركة رائدة في تطوير البرمجيات وتصميم تجربة المستخدم. نحن نقدم حلولًا تكنولوجية مبتكرة تساعد الشركات على تحقيق أهدافها وتعزيز تواجدها الرقمي.</p>
+                <p>تأسست الشركة على يد نخبة من المطورين والمصممين المحترفين ذوي الخبرة الواسعة في مجال التكنولوجيا، ونسعى دائمًا لتقديم أفضل الحلول التقنية وفقًا لأحدث المعايير العالمية.</p>
+                
+                <ul class="about-features-list">
+                    <li><i class='bx bx-check-circle'></i> فريق من الخبراء المتخصصين</li>
+                    <li><i class='bx bx-check-circle'></i> استخدام أحدث التقنيات والأدوات</li>
+                    <li><i class='bx bx-check-circle'></i> منهجية عمل احترافية ومنظمة</li>
+                    <li><i class='bx bx-check-circle'></i> دعم فني متواصل ما بعد التسليم</li>
+                </ul>
+                
+                <div class="btn-box">
+                    <a href="#contact" class="btn primary-btn"><i class='bx bx-conversation btn-icon'></i>تواصل معنا</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Section - Enhanced -->
+        <div class="about-team-section">
+            <div class="about-team-section-header">
+                <span class="about-team-subtitle">فريقنا المتميز</span>
+                <h3>نخبة من الخبراء في تقنية المعلومات</h3>
+                <div class="team-header-decor">
+                    <div class="team-header-line"></div>
+                    <div class="team-header-dot"></div>
+                    <div class="team-header-line"></div>
+                </div>
+            </div>
+            
+            <div class="team-filter-nav">
+                <button class="team-filter-btn active" data-filter="all">جميع الأعضاء</button>
+                <button class="team-filter-btn" data-filter="leadership">القيادة</button>
+                <button class="team-filter-btn" data-filter="development">التطوير</button>
+                <button class="team-filter-btn" data-filter="design">التصميم</button>
+            </div>
+            
+            <div class="about-team-wrapper">
+                <div class="about-team-card" data-category="leadership">
+                    <div class="about-team-card-content">
+                        <div class="about-team-card-front">
+                            <div class="about-team-member-img-wrapper">
+                                <div class="about-team-member-img" style="background-image: url('images/team/team-member-sample.jpg');"></div>
+                                <div class="about-img-glow"></div>
+                                <div class="member-status">متاح</div>
+                            </div>
+                            <div class="about-team-member-info">
+                                <h4>أحمد محمد</h4>
+                                <p>مدير تنفيذي</p>
+                                <div class="member-expertise">
+                                    <span>استراتيجية</span>
+                                    <span>إدارة</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-team-card-back">
+                            <div class="card-back-content">
+                                <div class="member-quote">"الابتكار هو ما يميز القائد عن التابع"</div>
+                                <h4>أحمد محمد</h4>
+                                <p>+8 سنوات خبرة في قيادة مشاريع التحول الرقمي وتطوير استراتيجيات الأعمال التقنية</p>
+                                <div class="about-social-links">
+                                    <a href="#" class="about-social-link"><i class='bx bxl-linkedin'></i></a>
+                                    <a href="#" class="about-social-link"><i class='bx bxl-twitter'></i></a>
+                                    <a href="#" class="about-social-link"><i class='bx bx-envelope'></i></a>
+                                </div>
+                            </div>
+                            <div class="card-back-pattern"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-team-card" data-category="development">
+                    <div class="about-team-card-content">
+                        <div class="about-team-card-front">
+                            <div class="about-team-member-img-wrapper">
+                                <div class="about-team-member-img" style="background-image: url('images/team/team-member-sample.jpg');"></div>
+                                <div class="about-img-glow"></div>
+                                <div class="member-status">متاح</div>
+                            </div>
+                            <div class="about-team-member-info">
+                                <h4>سارة خالد</h4>
+                                <p>رئيس قسم تطوير الويب</p>
+                                <div class="member-expertise">
+                                    <span>React</span>
+                                    <span>Node.js</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-team-card-back">
+                            <div class="card-back-content">
+                                <div class="member-quote">"التصميم الجيد يجعل التعقيد يبدو بسيطًا"</div>
+                                <h4>سارة خالد</h4>
+                                <p>متخصصة في React وNode.js مع +6 سنوات خبرة في تطوير تطبيقات الويب المتقدمة</p>
+                                <div class="about-social-links">
+                                    <a href="#" class="about-social-link"><i class='bx bxl-linkedin'></i></a>
+                                    <a href="#" class="about-social-link"><i class='bx bxl-github'></i></a>
+                                    <a href="#" class="about-social-link"><i class='bx bx-envelope'></i></a>
+                                </div>
+                            </div>
+                            <div class="card-back-pattern"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-team-card" data-category="design">
+                    <div class="about-team-card-content">
+                        <div class="about-team-card-front">
+                            <div class="about-team-member-img-wrapper">
+                                <div class="about-team-member-img" style="background-image: url('images/team/team-member-sample.jpg');"></div>
+                                <div class="about-img-glow"></div>
+                                <div class="member-status">متاح</div>
+                            </div>
+                            <div class="about-team-member-info">
+                                <h4>محمد عبدالله</h4>
+                                <p>مصمم تجربة المستخدم</p>
+                                <div class="member-expertise">
+                                    <span>UI/UX</span>
+                                    <span>Figma</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-team-card-back">
+                            <div class="card-back-content">
+                                <div class="member-quote">"التصميم ليس مجرد مظهر، بل هو كيف يعمل"</div>
+                                <h4>محمد عبدالله</h4>
+                                <p>مصمم مبدع متخصص في تجربة المستخدم وواجهات UI/UX مع خبرة واسعة في تصميم المنتجات الرقمية</p>
+                                <div class="about-social-links">
+                                    <a href="#" class="about-social-link"><i class='bx bxl-dribbble'></i></a>
+                                    <a href="#" class="about-social-link"><i class='bx bxl-behance'></i></a>
+                                    <a href="#" class="about-social-link"><i class='bx bx-envelope'></i></a>
+                                </div>
+                            </div>
+                            <div class="card-back-pattern"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-team-card" data-category="development">
+                    <div class="about-team-card-content">
+                        <div class="about-team-card-front">
+                            <div class="about-team-member-img-wrapper">
+                                <div class="about-team-member-img" style="background-image: url('images/team/team-member-sample.jpg');"></div>
+                                <div class="about-img-glow"></div>
+                                <div class="member-status">متاح</div>
+                            </div>
+                            <div class="about-team-member-info">
+                                <h4>نورا علي</h4>
+                                <p>مطورة تطبيقات</p>
+                                <div class="member-expertise">
+                                    <span>Flutter</span>
+                                    <span>React Native</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-team-card-back">
+                            <div class="card-back-content">
+                                <div class="member-quote">"البساطة هي سر التطبيقات الناجحة"</div>
+                                <h4>نورا علي</h4>
+                                <p>خبيرة في تطوير تطبيقات iOS و Android باستخدام Flutter و React Native مع العديد من التطبيقات الناجحة</p>
+                                <div class="about-social-links">
+                                    <a href="#" class="about-social-link"><i class='bx bxl-linkedin'></i></a>
+                                    <a href="#" class="about-social-link"><i class='bx bxl-github'></i></a>
+                                    <a href="#" class="about-social-link"><i class='bx bx-envelope'></i></a>
+                                </div>
+                            </div>
+                            <div class="card-back-pattern"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div class="team-cta">
+                <p>انضم إلى فريقنا المتميز وكن جزءًا من قصة نجاحنا</p>
+                <a href="#careers" class="btn primary-btn">وظائف شاغرة <i class='bx bx-right-arrow-alt btn-icon'></i></a>
+            </div> -->
+        </div>
     </div>
-        <!-- Decorative patterns -->
-        <div class="pattern-dots pattern-dots-1"></div>
-        <div class="pattern-dots pattern-dots-2"></div>
-        
-        <div class="img-about scroll-right">
-            <img src="images/logo.png" alt="من نحن">
-            <div class="info-about1">
-                <span>+10</span>
-                <p>سنوات خبرة</p>
-            </div>
-            <div class="info-about2">
-                <span>+100</span>
-                <p>مشروع منجز</p>
-            </div>
-            <div class="info-about3">
-                <span>+500</span>
-                <p>عميل راضٍ</p>
-            </div>
-        </div>
-        
-        <div class="about-content scroll-left">
-            <span class="subtitle">تعرف علينا</span>
-            <h3>بيان سوفت - ابتكار يتجاوز الحدود</h3>
-            <p>بيان سوفت هي شركة رائدة في تطوير البرمجيات وتصميم تجربة المستخدم. نحن نقدم حلولًا تكنولوجية مبتكرة تساعد الشركات على تحقيق أهدافها وتعزيز تواجدها الرقمي.</p>
-            <p>تأسست الشركة على يد نخبة من المطورين والمصممين المحترفين ذوي الخبرة الواسعة في مجال التكنولوجيا، ونسعى دائمًا لتقديم أفضل الحلول التقنية وفقًا لأحدث المعايير العالمية.</p>
-            
-            <ul class="features-list">
-                <li><i class='bx bx-check-circle'></i> فريق من الخبراء المتخصصين</li>
-                <li><i class='bx bx-check-circle'></i> استخدام أحدث التقنيات والأدوات</li>
-                <li><i class='bx bx-check-circle'></i> منهجية عمل احترافية ومنظمة</li>
-                <li><i class='bx bx-check-circle'></i> دعم فني متواصل ما بعد التسليم</li>
-            </ul>
-            
-            <div class="btn-box">
-                <a href="#contact" class="btn primary-btn"><i class='bx bx-conversation btn-icon'></i>تواصل معنا</a>
-            </div>
-        </div>
-    </section>
+</section>
     <!-- قسم الخدمات -->
     <section id="services" class="services">
         <div class="main-text scroll-scale">
@@ -700,7 +843,7 @@
                         <div class="port-actions">
                             <a href="#" class="portfolio-details-link btn primary-btn" data-id="1">
                                 <span>عرض التفاصيل</span>
-                                <i class="bx bx-link-external"></i>
+                                <i class="bx bx-link-external btn-icon"></i>
                             </a>
                             <button class="port-like-btn" aria-label="أعجبني">
                                 <i class='bx bx-heart'></i>
@@ -747,7 +890,7 @@
                         <div class="port-actions">
                             <a href="#" class="portfolio-details-link btn primary-btn" data-id="2">
                                 <span>عرض التفاصيل</span>
-                                <i class="bx bx-link-external"></i>
+                                <i class="bx bx-link-external btn-icon"></i>
                             </a>
                             <button class="port-like-btn" aria-label="أعجبني">
                                 <i class='bx bx-heart'></i>
@@ -794,7 +937,7 @@
                         <div class="port-actions">
                             <a href="#" class="portfolio-details-link btn primary-btn" data-id="3">
                                 <span>عرض التفاصيل</span>
-                                <i class="bx bx-link-external"></i>
+                                <i class="bx bx-link-external btn-icon"></i>
                             </a>
                             <button class="port-like-btn liked" aria-label="أعجبني">
                                 <i class='bx bxs-heart'></i>
@@ -841,7 +984,7 @@
                         <div class="port-actions">
                             <a href="#" class="portfolio-details-link btn primary-btn" data-id="4">
                                 <span>عرض التفاصيل</span>
-                                <i class="bx bx-link-external"></i>
+                                <i class="bx bx-link-external btn-icon"></i>
                             </a>
                             <button class="port-like-btn" aria-label="أعجبني">
                                 <i class='bx bx-heart'></i>
@@ -888,7 +1031,7 @@
                         <div class="port-actions">
                             <a href="#" class="portfolio-details-link btn primary-btn" data-id="5">
                                 <span>عرض التفاصيل</span>
-                                <i class="bx bx-link-external"></i>
+                                <i class="bx bx-link-external btn-icon"></i>
                             </a>
                             <button class="port-like-btn liked" aria-label="أعجبني">
                                 <i class='bx bxs-heart'></i>
@@ -935,7 +1078,7 @@
                         <div class="port-actions">
                             <a href="#" class="portfolio-details-link btn primary-btn" data-id="6">
                                 <span>عرض التفاصيل</span>
-                                <i class="bx bx-link-external"></i>
+                                <i class="bx bx-link-external btn-icon"></i>
                             </a>
                             <button class="port-like-btn" aria-label="أعجبني">
                                 <i class='bx bx-heart'></i>
@@ -958,17 +1101,13 @@
                 </div>
                 <h3>لم يتم العثور على نتائج</h3>
                 <p>لم نتمكن من العثور على أي مشاريع تطابق معايير البحث الخاصة بك.</p>
-                <button id="resetSearch" class="btn-reset">إعادة ضبط البحث</button>
+                <button id="resetSearch" class="btn primary-btn">إعادة ضبط البحث</button>
             </div>
 
             <div class="portfolio-actions scroll-scale">
                 <button class="btn primary-btn"id="loadMoreBtn">
                     <span>عرض المزيد من المشاريع</span>
                     <i class='bx bx-chevron-down btn-icon'></i>
-                </button>
-                <button class="btn outline-btn" id="viewOptionsBtn">
-                    <i class='bx bx-grid-alt btn-icon'></i>
-                    <span>خيارات العرض</span>
                 </button>
             </div>
         </div>
@@ -1010,56 +1149,6 @@
                     </div>
                     <button id="modalCloseBtn" class="btn">إغلاق</button>
                 </div>
-            </div>
-        </div>
-        
-        <!-- View Options Menu -->
-        <div id="viewOptionsMenu" class="view-options-menu">
-            <div class="view-options-header">
-                <h3>خيارات العرض</h3>
-                <button id="closeViewOptions" title="إغلاق خيارات العرض"><i class='bx bx-x'></i></button>
-            </div>
-            <div class="view-options-body">
-                <div class="view-option">
-                    <label>طريقة العرض</label>
-                    <div class="toggle-buttons">
-                        <button class="toggle-btn active" data-view="grid"><i class='bx bx-grid-alt'></i> شبكة</button>
-                        <button class="toggle-btn" data-view="list"><i class='bx bx-list-ul'></i> قائمة</button>
-                    </div>
-                </div>
-                <div class="view-option">
-                    <label>حجم البطاقات</label>
-                    <div class="range-slider">
-                        <input type="range" min="1" max="3" value="2" id="cardSizeSlider" title="Adjust card size">
-                        <div class="range-labels">
-                            <span>صغير</span>
-                            <span>متوسط</span>
-                            <span>كبير</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="view-option">
-                    <label>ترتيب المشاريع</label>
-                    <select id="sortProjects" title="ترتيب المشاريع">
-                        <option value="newest">الأحدث أولاً</option>
-                        <option value="oldest">الأقدم أولاً</option>
-                        <option value="name-asc">أبجدي (أ-ي)</option>
-                        <option value="name-desc">أبجدي (ي-أ)</option>
-                        <option value="popular">الأكثر شعبية</option>
-                    </select>
-                </div>
-                <div class="view-option">
-                    <label>تأثيرات الحركة</label>
-                    <div class="toggle-switch">
-                        <label for="animationsToggle" class="sr-only">Toggle Animations</label>
-                        <input type="checkbox" id="animationsToggle" title="Toggle Animations" checked>
-                        <label for="animationsToggle"></label>
-                    </div>
-                </div>
-            </div>
-            <div class="view-options-footer">
-                <button id="resetViewOptions" class="btn outline-btn">إعادة الضبط</button>
-                <button id="applyViewOptions" class="btn primary-btn">تطبيق</button>
             </div>
         </div>
     </section>

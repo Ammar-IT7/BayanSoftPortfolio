@@ -50,7 +50,7 @@ function initCounter() {
     
     function animateCounter(el) {
         const target = parseInt(el.closest('.stat-item').getAttribute('data-stat'));
-        const duration = 2000; // 2 seconds
+        const duration = 4000; // 2 seconds
         const step = Math.ceil(target / (duration / 30)); // Update every 30ms
         
         let current = 0;
@@ -503,46 +503,46 @@ function initParticles() {
     document.body.appendChild(script);
 }
 
-// Scroll-Based Animations
-function initScrollObserver() {
-    const elementsToAnimate = document.querySelectorAll('.feature-item, .img-card, .stat-item, .info-item');
+// // Scroll-Based Animations
+// function initScrollObserver() {
+//     const elementsToAnimate = document.querySelectorAll('.feature-item, .img-card, .stat-item, .info-item');
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.2,
-        rootMargin: '0px 0px -100px 0px'
-    });
+//     const observer = new IntersectionObserver((entries) => {
+//         entries.forEach(entry => {
+//             if (entry.isIntersecting) {
+//                 entry.target.classList.add('in-view');
+//                 observer.unobserve(entry.target);
+//             }
+//         });
+//     }, {
+//         threshold: 0.2,
+//         rootMargin: '0px 0px -100px 0px'
+//     });
     
-    elementsToAnimate.forEach(el => {
-        observer.observe(el);
+//     elementsToAnimate.forEach(el => {
+//         observer.observe(el);
         
-        // Add staggered animation delay
-        const index = Array.from(elementsToAnimate).indexOf(el);
-        el.style.transitionDelay = `${index * 0.1}s`;
-    });
+//         // Add staggered animation delay
+//         const index = Array.from(elementsToAnimate).indexOf(el);
+//         el.style.transitionDelay = `${index * 0.1}s`;
+//     });
     
-    // Smooth scroll for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+//     // Smooth scroll for navigation links
+//     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+//         anchor.addEventListener('click', function(e) {
+//             e.preventDefault();
+//             const targetId = this.getAttribute('href');
+//             const targetElement = document.querySelector(targetId);
             
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
+//             if (targetElement) {
+//                 window.scrollTo({
+//                     top: targetElement.offsetTop - 80,
+//                     behavior: 'smooth'
+//                 });
+//             }
+//         });
+//     });
+// }
 
 // Counter animation
 const counters = document.querySelectorAll('.counter-number');
@@ -556,7 +556,7 @@ const animateCounter = (counter) => {
         if (count < target) {
             count += increment;
             counter.innerText = Math.ceil(count);
-            setTimeout(updateCounter, 30);
+            setTimeout(updateCounter, 5);
         } else {
             counter.innerText = target;
         }
@@ -565,19 +565,135 @@ const animateCounter = (counter) => {
     updateCounter();
 };
 
-// Create an Intersection Observer to trigger counter animation when in view
-const counterObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            observer.unobserve(entry.target);
+// About section - Enhanced team functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if elements are in viewport for animation
+    function checkVisibility() {
+        const teamCards = document.querySelectorAll('.about-team-card');
+        
+        teamCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const isVisible = (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+                rect.bottom >= 0
+            );
+            
+            if (isVisible) {
+                card.classList.add('animated');
+            }
+        });
+    }
+    
+    // Initialize the team filter buttons
+    const filterButtons = document.querySelectorAll('.team-filter-btn');
+    const teamCards = document.querySelectorAll('.about-team-card');
+    
+    // Filter team members based on category
+    function filterTeamMembers(category) {
+        teamCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+                card.style.display = 'block';
+                // Add a slight delay for smoother animations
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+    }
+    
+    // Add event listeners to filter buttons
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            // Filter team members
+            filterTeamMembers(button.getAttribute('data-filter'));
+        });
+    });
+    
+    // Add hover effects with mouse position tracking
+    teamCards.forEach(card => {
+        const cardContent = card.querySelector('.about-team-card-content');
+        
+        // 3D rotate effect based on mouse position
+        card.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 992) { // Only on larger screens
+                const cardRect = card.getBoundingClientRect();
+                const cardCenterX = cardRect.left + cardRect.width / 2;
+                const cardCenterY = cardRect.top + cardRect.height / 2;
+                const mouseX = e.clientX - cardCenterX;
+                const mouseY = e.clientY - cardCenterY;
+                
+                // Calculate rotation - subtle effect
+                const rotateY = mouseX * 0.05;
+                const rotateX = -mouseY * 0.05;
+                
+                // Apply transform - but only if not already flipped
+                if (!cardContent.classList.contains('flipped')) {
+                    cardContent.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                }
+            }
+        });
+        
+        // Reset transform on mouse leave
+        card.addEventListener('mouseleave', () => {
+            if (!cardContent.classList.contains('flipped')) {
+                cardContent.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            }
+        });
+        
+        // Track flip state with a class
+        card.addEventListener('click', () => {
+            if (cardContent.style.transform.includes('rotateY(180deg)')) {
+                cardContent.classList.add('flipped');
+            } else {
+                cardContent.classList.remove('flipped');
+            }
+        });
+    });
+    
+    // Initial check for visible elements
+    checkVisibility();
+    
+    // Check visibility on scroll
+    window.addEventListener('scroll', checkVisibility);
+    
+    // Add scroll-triggered parallax effect to team section
+    window.addEventListener('scroll', () => {
+        const teamSection = document.querySelector('.about-team-section');
+        const scrollPosition = window.scrollY;
+        
+        if (teamSection) {
+            const teamSectionTop = teamSection.offsetTop;
+            const teamSectionHeight = teamSection.offsetHeight;
+            const windowHeight = window.innerHeight;
+            
+            if (scrollPosition > teamSectionTop - windowHeight && 
+                scrollPosition < teamSectionTop + teamSectionHeight) {
+                
+                const parallaxOffset = (scrollPosition - (teamSectionTop - windowHeight)) * 0.05;
+                
+                // Apply parallax to decorative elements
+                const dots = document.querySelectorAll('.about-pattern-dots');
+                dots.forEach(dot => {
+                    dot.style.transform = `translate(${parallaxOffset}px, ${parallaxOffset}px)`;
+                });
+            }
         }
     });
-}, { threshold: 0.5 });
-
-counters.forEach(counter => {
-    counterObserver.observe(counter);
 });
+
 // Portfolio Section - Advanced Implementation
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
@@ -590,11 +706,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const visibleProjectsCount = document.getElementById('visibleProjectsCount');
     const totalProjectsCount = document.getElementById('totalProjectsCount');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
-    const viewOptionsBtn = document.getElementById('viewOptionsBtn');
-    const viewOptionsMenu = document.getElementById('viewOptionsMenu');
-    const closeViewOptions = document.getElementById('closeViewOptions');
-    const resetViewOptions = document.getElementById('resetViewOptions');
-    const applyViewOptions = document.getElementById('applyViewOptions');
     const quickViewModal = document.getElementById('quickViewModal');
     const quickViewClose = document.getElementById('quickViewClose');
     const quickViewBody = document.getElementById('quickViewBody');
@@ -605,18 +716,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalCloseBtn = document.getElementById('modalCloseBtn');
     const prevProject = document.getElementById('prevProject');
     const nextProject = document.getElementById('nextProject');
-    const viewButtons = document.querySelectorAll('.toggle-btn[data-view]');
-    const cardSizeSlider = document.getElementById('cardSizeSlider');
-    const sortSelect = document.getElementById('sortProjects');
-    const animationsToggle = document.getElementById('animationsToggle');
     
     // State variables
     let currentFilter = 'all';
     let currentPage = 1;
     let currentProjectId = null;
     let itemsPerPage = 6;
-    let animationsEnabled = true;
     let allItems = Array.from(portfolioItems);
+    let filteredItems = allItems; // Keep track of currently filtered items
     let likeBtns, quickViewBtns, portfolioDetailsLinks;
     
     // Initialize event listeners for dynamic elements
@@ -626,56 +733,48 @@ document.addEventListener('DOMContentLoaded', function() {
         quickViewBtns = document.querySelectorAll('.quickview-btn');
         portfolioDetailsLinks = document.querySelectorAll('.portfolio-details-link');
         
-        // Like button functionality
-        likeBtns.forEach(btn => {
-            // Remove existing listeners first to avoid duplicates
-            const newBtn = btn.cloneNode(true);
-            btn.parentNode.replaceChild(newBtn, btn);
+        // Use event delegation instead of attaching to each element
+        portfolioGallery.addEventListener('click', function(event) {
+            // Handle like button clicks
+            if (event.target.closest('.port-like-btn')) {
+                const likeBtn = event.target.closest('.port-like-btn');
+                handleLikeButtonClick(likeBtn);
+            }
             
-            newBtn.addEventListener('click', function() {
-                this.classList.toggle('liked');
-                const likeCount = this.querySelector('.like-count');
-                let currentLikes = parseInt(likeCount.textContent);
-                
-                if (this.classList.contains('liked')) {
-                    likeCount.textContent = currentLikes + 1;
-                    this.querySelector('i').classList.remove('bx-heart');
-                    this.querySelector('i').classList.add('bxs-heart');
-                    
-                    // Show notification
-                    showNotification('تم الإعجاب بالمشروع', 'success');
-                } else {
-                    likeCount.textContent = currentLikes - 1;
-                    this.querySelector('i').classList.remove('bxs-heart');
-                    this.querySelector('i').classList.add('bx-heart');
-                }
-            });
-        });
-        
-        // Quick View functionality
-        quickViewBtns.forEach(btn => {
-            // Remove existing listeners first to avoid duplicates
-            const newBtn = btn.cloneNode(true);
-            btn.parentNode.replaceChild(newBtn, btn);
-            
-            newBtn.addEventListener('click', function() {
-                const projectId = this.getAttribute('data-id');
+            // Handle quick view button clicks
+            if (event.target.closest('.quickview-btn')) {
+                const quickViewBtn = event.target.closest('.quickview-btn');
+                const projectId = quickViewBtn.getAttribute('data-id');
                 openQuickView(projectId);
-            });
-        });
-        
-        // Portfolio Details Modal
-        portfolioDetailsLinks.forEach(link => {
-            // Remove existing listeners first to avoid duplicates
-            const newLink = link.cloneNode(true);
-            link.parentNode.replaceChild(newLink, link);
+            }
             
-            newLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                const projectId = this.getAttribute('data-id');
+            // Handle portfolio details link clicks
+            if (event.target.closest('.portfolio-details-link')) {
+                event.preventDefault();
+                const link = event.target.closest('.portfolio-details-link');
+                const projectId = link.getAttribute('data-id');
                 openProjectDetails(projectId);
-            });
+            }
         });
+    }
+    
+    function handleLikeButtonClick(btn) {
+        btn.classList.toggle('liked');
+        const likeCount = btn.querySelector('.like-count');
+        let currentLikes = parseInt(likeCount.textContent);
+        
+        if (btn.classList.contains('liked')) {
+            likeCount.textContent = currentLikes + 1;
+            btn.querySelector('i').classList.remove('bx-heart');
+            btn.querySelector('i').classList.add('bxs-heart');
+            
+            // Show notification
+            showNotification('تم الإعجاب بالمشروع', 'success');
+        } else {
+            likeCount.textContent = currentLikes - 1;
+            btn.querySelector('i').classList.remove('bxs-heart');
+            btn.querySelector('i').classList.add('bx-heart');
+        }
     }
     
     // Initialize counter
@@ -705,37 +804,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 searchInput.value = '';
             }
             
+            // Reset pagination
+            currentPage = 1;
+            
             // Filter items
-            filterItems(filterValue);
+            filterItems();
         });
     });
     
     // Search functionality
     if (searchInput) {
         searchInput.addEventListener('input', debounce(function() {
-            const searchTerm = this.value.toLowerCase().trim();
-            
-            if (searchTerm) {
-                const filteredItems = Array.from(portfolioItems).filter(item => {
-                    const title = item.getAttribute('data-title') ? item.getAttribute('data-title').toLowerCase() : '';
-                    const description = item.querySelector('.port-content p') ? 
-                        item.querySelector('.port-content p').textContent.toLowerCase() : '';
-                    
-                    return title.includes(searchTerm) || description.includes(searchTerm);
-                });
-                
-                if (filteredItems.length === 0) {
-                    showEmptyState();
-                } else {
-                    hideEmptyState();
-                    showItems(filteredItems);
-                }
-            } else {
-                hideEmptyState();
-                filterItems(currentFilter);
-            }
-            
-            updateVisibleCount();
+            // No need to run full filtering logic if search term is unchanged
+            filterItems();
         }, 300));
     }
     
@@ -745,13 +826,97 @@ document.addEventListener('DOMContentLoaded', function() {
             if (searchInput) {
                 searchInput.value = '';
             }
-            hideEmptyState();
-            filterItems(currentFilter);
-            updateVisibleCount();
+            filterItems();
         });
     }
     
-    // Load more functionality
+    // Improved filter function that handles both category and search filtering
+    function filterItems() {
+        if (!portfolioGallery) return;
+        
+        // Get search term if present
+        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        
+        // Filter by category and search term
+        filteredItems = allItems.filter(item => {
+            // Category filter
+            const passesCategoryFilter = currentFilter === 'all' || 
+                item.classList.contains(currentFilter.substring(1));
+            
+            // If no search term, just use category filter
+            if (!searchTerm) return passesCategoryFilter;
+            
+            // Otherwise, apply search filter too
+            const title = item.getAttribute('data-title') ? 
+                item.getAttribute('data-title').toLowerCase() : '';
+            const description = item.querySelector('.port-content p') ? 
+                item.querySelector('.port-content p').textContent.toLowerCase() : '';
+            
+            const passesSearchFilter = title.includes(searchTerm) || 
+                description.includes(searchTerm);
+            
+            // Item must pass both filters
+            return passesCategoryFilter && passesSearchFilter;
+        });
+        
+        // Show/hide empty state
+        if (filteredItems.length === 0) {
+            showEmptyState();
+        } else {
+            hideEmptyState();
+        }
+        
+        // Apply visibility using CSS classes instead of inline styles
+        allItems.forEach(item => {
+            if (filteredItems.includes(item)) {
+                item.classList.remove('hidden');
+                item.classList.add('visible');
+            } else {
+                item.classList.remove('visible');
+                item.classList.add('hidden');
+            }
+        });
+        
+        // Use requestAnimationFrame for smoother animations
+        requestAnimationFrame(() => {
+            // Animate visible items
+            filteredItems.forEach((item, index) => {
+                // Stagger animations for better visual effect
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 50 * (index % 10)); // Limit staggering to avoid long delays
+            });
+        });
+        
+        updateVisibleCount();
+        updateNavButtons();
+        updateLoadMoreButton();
+    }
+    
+    // Update the load more button visibility based on filtered items
+    function updateLoadMoreButton() {
+        if (!loadMoreBtn) return;
+        
+        const itemsToShow = currentPage * itemsPerPage;
+        
+        if (filteredItems.length > itemsToShow) {
+            loadMoreBtn.style.display = 'inline-flex';
+            loadMoreBtn.innerHTML = '<span>عرض المزيد من المشاريع</span> <i class="bx bx-chevron-down"></i>';
+            loadMoreBtn.disabled = false;
+            loadMoreBtn.classList.remove('btn-disabled');
+        } else {
+            if (filteredItems.length === 0) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.innerHTML = '<span>تم تحميل جميع المشاريع</span> <i class="bx bx-check"></i>';
+                loadMoreBtn.classList.add('btn-disabled');
+                loadMoreBtn.disabled = true;
+            }
+        }
+    }
+    
+    // Load more functionality with virtual rendering
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', function() {
             // Change button state
@@ -762,10 +927,10 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 currentPage++;
                 const startIndex = (currentPage - 1) * itemsPerPage;
-                const endIndex = Math.min(startIndex + itemsPerPage, allItems.length);
+                const endIndex = Math.min(startIndex + itemsPerPage, filteredItems.length);
                 
                 // If no more items to load
-                if (startIndex >= allItems.length) {
+                if (startIndex >= filteredItems.length) {
                     this.innerHTML = '<span>تم تحميل جميع المشاريع</span> <i class="bx bx-check"></i>';
                     this.classList.add('btn-disabled');
                     
@@ -775,36 +940,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 // Get next batch of items
-                const nextItems = allItems.slice(startIndex, endIndex);
+                const nextItems = filteredItems.slice(startIndex, endIndex);
                 
-                // Add new items with animation
+                // Make next batch of filtered items visible
                 nextItems.forEach((item, index) => {
-                    // Clone the item
-                    const newItem = item.cloneNode(true);
-                    newItem.style.opacity = '0';
-                    newItem.style.transform = 'translateY(30px)';
-                    
-                    // Append to gallery
-                    portfolioGallery.appendChild(newItem);
-                    
-                    // Animate in
+                    item.style.display = 'block';
+                    // Stagger animations
                     setTimeout(() => {
-                        newItem.style.transition = 'all 0.5s ease';
-                        newItem.style.opacity = '1';
-                        newItem.style.transform = 'translateY(0)';
-                    }, 100 + (index * 100));
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100 * (index % 6)); // Limit staggering
                 });
-                
-                // Reinitialize event listeners for new items
-                initializeEventListeners();
                 
                 // Update counters
                 updateVisibleCount();
                 
                 // Reset button state
-                if (endIndex >= allItems.length) {
+                if (endIndex >= filteredItems.length) {
                     this.innerHTML = '<span>تم تحميل جميع المشاريع</span> <i class="bx bx-check"></i>';
                     this.classList.add('btn-disabled');
+                    this.disabled = true;
                 } else {
                     this.innerHTML = '<span>عرض المزيد من المشاريع</span> <i class="bx bx-chevron-down"></i>';
                     this.disabled = false;
@@ -812,134 +967,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Show notification
                 showNotification(`تم تحميل ${nextItems.length} مشاريع جديدة`, 'success');
-            }, 1200);
+            }, 800);
         });
-    }
-    
-    // View options menu
-    if (viewOptionsBtn && viewOptionsMenu) {
-        viewOptionsBtn.addEventListener('click', function() {
-            viewOptionsMenu.classList.add('show');
-            document.body.classList.add('menu-open');
-        });
-        
-        if (closeViewOptions) {
-            closeViewOptions.addEventListener('click', function() {
-                viewOptionsMenu.classList.remove('show');
-                document.body.classList.remove('menu-open');
-            });
-        }
-        
-        // Change view (grid/list)
-        viewButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                viewButtons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                const viewType = this.getAttribute('data-view');
-                if (viewType === 'grid') {
-                    if (portfolioGallery) {
-                        portfolioGallery.classList.remove('list-view');
-                    }
-                } else {
-                    if (portfolioGallery) {
-                        portfolioGallery.classList.add('list-view');
-                    }
-                }
-            });
-        });
-        
-        // Card size slider
-        if (cardSizeSlider && portfolioGallery) {
-            cardSizeSlider.addEventListener('input', function() {
-                portfolioGallery.classList.remove('size-small', 'size-large');
-                
-                if (this.value == 1) {
-                    portfolioGallery.classList.add('size-small');
-                } else if (this.value == 3) {
-                    portfolioGallery.classList.add('size-large');
-                }
-            });
-        }
-        
-        // Sorting projects
-        if (sortSelect) {
-            sortSelect.addEventListener('change', function() {
-                const sortType = this.value;
-                sortProjects(sortType);
-            });
-        }
-        
-        // Toggle animations
-        if (animationsToggle) {
-            animationsToggle.addEventListener('change', function() {
-                animationsEnabled = this.checked;
-                
-                if (animationsEnabled) {
-                    document.body.classList.remove('animations-disabled');
-                    if (portfolioGallery) {
-                        portfolioGallery.classList.remove('animations-disabled');
-                    }
-                } else {
-                    document.body.classList.add('animations-disabled');
-                    if (portfolioGallery) {
-                        portfolioGallery.classList.add('animations-disabled');
-                    }
-                }
-            });
-        }
-        
-        // Reset view options
-        if (resetViewOptions) {
-            resetViewOptions.addEventListener('click', function() {
-                // Reset view type
-                viewButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.getAttribute('data-view') === 'grid') {
-                        btn.classList.add('active');
-                    }
-                });
-                if (portfolioGallery) {
-                    portfolioGallery.classList.remove('list-view');
-                }
-                
-                // Reset card size
-                if (cardSizeSlider) {
-                    cardSizeSlider.value = 2;
-                }
-                if (portfolioGallery) {
-                    portfolioGallery.classList.remove('size-small', 'size-large');
-                }
-                
-                // Reset sort
-                if (sortSelect) {
-                    sortSelect.value = 'newest';
-                    sortProjects('newest');
-                }
-                
-                // Reset animations
-                if (animationsToggle) {
-                    animationsToggle.checked = true;
-                }
-                animationsEnabled = true;
-                document.body.classList.remove('animations-disabled');
-                if (portfolioGallery) {
-                    portfolioGallery.classList.remove('animations-disabled');
-                }
-                
-                showNotification('تم إعادة ضبط خيارات العرض', 'info');
-            });
-        }
-        
-        // Apply view options
-        if (applyViewOptions) {
-            applyViewOptions.addEventListener('click', function() {
-                viewOptionsMenu.classList.remove('show');
-                document.body.classList.remove('menu-open');
-                
-                showNotification('تم تطبيق خيارات العرض', 'success');
-            });
-        }
     }
     
     // Quick View close
@@ -993,10 +1022,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (quickViewModal && quickViewModal.classList.contains('show')) {
                 closeQuickView();
-            }
-            if (viewOptionsMenu && viewOptionsMenu.classList.contains('show')) {
-                viewOptionsMenu.classList.remove('show');
-                document.body.classList.remove('menu-open');
             }
         }
     });
@@ -1154,74 +1179,31 @@ document.addEventListener('DOMContentLoaded', function() {
         const items = document.querySelectorAll('.port-box');
         if (!items.length) return;
         
-        items.forEach((item, index) => {
+        // Use Intersection Observer for more efficient animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Animate the item when it comes into view
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 50 * (index % 8));
+                    
+                    // Unobserve after animation
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        // Set up initial state and observe
+        items.forEach((item) => {
             item.style.opacity = '0';
             item.style.transform = 'translateY(30px)';
-            setTimeout(() => {
-                item.style.transition = 'all 0.5s ease';
-                item.style.opacity = '1';
-                item.style.transform = 'translateY(0)';
-            }, 100 + (index * 100));
+            item.style.transition = 'all 0.5s ease';
+            observer.observe(item);
         });
-    }
-    
-    function filterItems(filterValue) {
-        if (!portfolioGallery) return;
-        
-        const items = Array.from(document.querySelectorAll('.port-box'));
-        let visibleCount = 0;
-        
-        items.forEach(item => {
-            if (filterValue === 'all' || item.classList.contains(filterValue.substring(1))) {
-                item.style.display = 'block';
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, 100);
-                visibleCount++;
-            } else {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    item.style.display = 'none';
-                }, 300);
-            }
-        });
-        
-        if (visibleCount === 0) {
-            showEmptyState();
-        } else {
-            hideEmptyState();
-        }
-        
-        updateVisibleCount();
-        // Make sure to update navigation buttons after filtering
-        updateNavButtons();
-    }
-    
-    function showItems(items) {
-        if (!portfolioGallery) return;
-        
-        const allItems = Array.from(document.querySelectorAll('.port-box'));
-        
-        allItems.forEach(item => {
-            if (items.includes(item)) {
-                item.style.display = 'block';
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, 100);
-            } else {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    item.style.display = 'none';
-                }, 300);
-            }
-        });
-        
-        // Update navigation buttons after changing visible items
-        updateNavButtons();
     }
     
     function showEmptyState() {
@@ -1237,26 +1219,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function updateVisibleCount() {
-        const visibleItems = document.querySelectorAll('.port-box[style*="display: block"], .port-box:not([style*="display: none"])');
-        if (visibleProjectsCount) {
-            visibleProjectsCount.textContent = visibleItems.length;
-        }
+        if (!visibleProjectsCount) return;
+        
+        const visibleCount = document.querySelectorAll('.port-box:not(.hidden)').length;
+        visibleProjectsCount.textContent = visibleCount;
     }
     
     function sortProjects(sortType) {
         if (!portfolioGallery) return;
         
-        const items = Array.from(document.querySelectorAll('.port-box'));
-        
-        // Remove items from DOM
-        items.forEach(item => {
-            if (item.parentNode === portfolioGallery) {
-                portfolioGallery.removeChild(item);
-            }
-        });
-        
-        // Sort items
-        const sortedItems = items.sort((a, b) => {
+        // Sort based on the selected sort type
+        allItems.sort((a, b) => {
             switch (sortType) {
                 case 'newest':
                     return parseInt(b.getAttribute('data-order') || 0) - parseInt(a.getAttribute('data-order') || 0);
@@ -1275,26 +1248,45 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Re-add sorted items with animation
-        sortedItems.forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(30px)';
-            portfolioGallery.appendChild(item);
-            
-            setTimeout(() => {
-                item.style.transition = 'all 0.5s ease';
-                item.style.opacity = '1';
-                item.style.transform = 'translateY(0)';
-            }, 50 + (index * 50));
+        // Reapply visible/hidden status
+        const visibleItems = allItems.filter(item => !item.classList.contains('hidden'));
+        
+        // Re-attach items in sorted order
+        allItems.forEach(item => {
+            // Remove from DOM
+            if (item.parentNode) {
+                item.parentNode.removeChild(item);
+            }
         });
         
-        // Update all items array for pagination
-        allItems = sortedItems;
+        // Re-add sorted items
+        allItems.forEach(item => {
+            portfolioGallery.appendChild(item);
+        });
         
-        // Reinitialize event listeners for sorted items
-        initializeEventListeners();
+        // Re-filter to maintain current filter state
+        filteredItems = visibleItems;
+        allItems.forEach(item => {
+            if (filteredItems.includes(item)) {
+                item.classList.remove('hidden');
+                item.classList.add('visible');
+            } else {
+                item.classList.remove('visible');
+                item.classList.add('hidden');
+            }
+        });
         
-        // Update visible count after sorting
+        // Apply animations
+        requestAnimationFrame(() => {
+            filteredItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 50 * (index % 10));
+            });
+        });
+        
+        // Update counters
         updateVisibleCount();
     }
     
@@ -1330,17 +1322,18 @@ document.addEventListener('DOMContentLoaded', function() {
             
             quickViewBody.innerHTML = content;
             
-            // Add event listener to view details button
-            const viewDetailsBtn = quickViewBody.querySelector('.view-full-details');
-            if (viewDetailsBtn) {
-                viewDetailsBtn.addEventListener('click', function(e) {
+            // Add event listener to view details button using event delegation
+            quickViewBody.addEventListener('click', function(e) {
+                if (e.target.closest('.view-full-details')) {
                     e.preventDefault();
+                    const btn = e.target.closest('.view-full-details');
+                    const pid = btn.getAttribute('data-id');
                     closeQuickView();
                     setTimeout(() => {
-                        openProjectDetails(this.getAttribute('data-id'));
+                        openProjectDetails(pid);
                     }, 300);
-                });
-            }
+                }
+            }, { once: true }); // Use once option to avoid duplicate listeners
             
             // Show modal
             quickViewModal.classList.add('show');
@@ -1368,8 +1361,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update modal title
             modalTitle.textContent = project.title;
             
-            // Create modal content
-            let html = `
+            // Create modal content - content remains the same as in your original code
+            modalBody.innerHTML = `
                 <div class="project-details">
                     <div class="project-gallery">
                         <div class="gallery-main">
@@ -1441,9 +1434,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             
-            modalBody.innerHTML = html;
-            
-            // Setup gallery functionality
+            // Setup gallery functionality using event delegation
             setupGallery();
             
             // Show modal
@@ -1456,62 +1447,79 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function setupGallery() {
-        const galleryThumbs = document.querySelectorAll('.gallery-thumb');
-        const mainImage = document.getElementById('mainImage');
-        const nextBtn = document.querySelector('.next-btn');
-        const prevBtn = document.querySelector('.prev-btn');
-        let currentIndex = 0;
+        const modalBody = document.getElementById('modalBody');
+        if (!modalBody) return;
         
-        if (!mainImage) return; // Exit if no main image found
-        
-        // Set up thumbnail clicks
-        galleryThumbs.forEach(thumb => {
-            thumb.addEventListener('click', function() {
-                const index = parseInt(this.getAttribute('data-index') || '0');
-                currentIndex = index;
-                updateGallery();
-            });
-        });
-        
-        // Navigation buttons
-        if (nextBtn && prevBtn) {
-            nextBtn.addEventListener('click', function() {
-                currentIndex = (currentIndex + 1) % galleryThumbs.length;
-                updateGallery();
-            });
+        // Use event delegation for gallery interactions
+        modalBody.addEventListener('click', function(e) {
+            const mainImage = document.getElementById('mainImage');
+            if (!mainImage) return;
             
-            prevBtn.addEventListener('click', function() {
-                currentIndex = (currentIndex - 1 + galleryThumbs.length) % galleryThumbs.length;
-                updateGallery();
-            });
-        }
-        
-        // Function to update gallery
-        function updateGallery() {
-            // Update main image with smooth transition
-            mainImage.style.opacity = '0';
-            setTimeout(() => {
-                if (galleryThumbs[currentIndex] && galleryThumbs[currentIndex].querySelector('img')) {
-                    mainImage.src = galleryThumbs[currentIndex].querySelector('img').src;
-                    mainImage.style.opacity = '1';
-                }
-            }, 300);
-            
-            // Update active thumbnail
-            galleryThumbs.forEach(thumb => thumb.classList.remove('active'));
-            if (galleryThumbs[currentIndex]) {
-                galleryThumbs[currentIndex].classList.add('active');
+            // Handle thumbnail clicks
+            const thumbClicked = e.target.closest('.gallery-thumb');
+            if (thumbClicked) {
+                const index = parseInt(thumbClicked.getAttribute('data-index') || '0');
+                updateGalleryImage(mainImage, index);
+                return;
             }
+            
+            // Handle navigation button clicks
+            if (e.target.closest('.next-btn')) {
+                navigateGallery(mainImage, 'next');
+                return;
+            }
+            
+            if (e.target.closest('.prev-btn')) {
+                navigateGallery(mainImage, 'prev');
+                return;
+            }
+        });
+    }
+    
+    function updateGalleryImage(mainImage, index) {
+        const galleryThumbs = document.querySelectorAll('.gallery-thumb');
+        if (!galleryThumbs.length) return;
+        
+        // Update main image with smooth transition
+        mainImage.style.opacity = '0';
+        setTimeout(() => {
+            if (galleryThumbs[index] && galleryThumbs[index].querySelector('img')) {
+                mainImage.src = galleryThumbs[index].querySelector('img').src;
+                mainImage.style.opacity = '1';
+            }
+        }, 300);
+        
+        // Update active thumbnail
+        galleryThumbs.forEach(thumb => thumb.classList.remove('active'));
+        if (galleryThumbs[index]) {
+            galleryThumbs[index].classList.add('active');
             
             // Scroll thumbnail into view if possible
-            if (galleryThumbs[currentIndex] && galleryThumbs[currentIndex].scrollIntoView) {
-                galleryThumbs[currentIndex].scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center'
-                });
-            }
+            galleryThumbs[index].scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
+            });
         }
+        
+        // Store current index as a data attribute for navigation
+        mainImage.setAttribute('data-current-index', index.toString());
+    }
+    
+    function navigateGallery(mainImage, direction) {
+        const galleryThumbs = document.querySelectorAll('.gallery-thumb');
+        if (!galleryThumbs.length) return;
+        
+        const currentIndex = parseInt(mainImage.getAttribute('data-current-index') || '0');
+        let newIndex;
+        
+        if (direction === 'next') {
+            newIndex = (currentIndex + 1) % galleryThumbs.length;
+        } else {
+            newIndex = (currentIndex - 1 + galleryThumbs.length) % galleryThumbs.length;
+        }
+        
+        updateGalleryImage(mainImage, newIndex);
     }
     
     function closeModal() {
@@ -1525,7 +1533,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function navigateProject(direction) {
         // Get all visible portfolio items
-        const visibleItems = Array.from(document.querySelectorAll('.port-box:not([style*="display: none"])'));
+        const visibleItems = filteredItems;
         const projectIds = visibleItems.map(item => {
             const link = item.querySelector('.portfolio-details-link');
             return link ? link.getAttribute('data-id') : null;
@@ -1554,33 +1562,50 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function updateNavButtons() {
-        // Get all visible portfolio items
-        const visibleItems = Array.from(document.querySelectorAll('.port-box:not([style*="display: none"])'));
+        if (!prevProject || !nextProject) return;
         
         // If only one project is visible, disable navigation buttons
-        if (visibleItems.length <= 1) {
-            if (prevProject) {
-                prevProject.disabled = true;
-                prevProject.classList.add('disabled');
-            }
-            if (nextProject) {
-                nextProject.disabled = true;
-                nextProject.classList.add('disabled');
-            }
+        if (filteredItems.length <= 1) {
+            prevProject.disabled = true;
+            prevProject.classList.add('disabled');
+            nextProject.disabled = true;
+            nextProject.classList.add('disabled');
         } else {
-            if (prevProject) {
-                prevProject.disabled = false;
-                prevProject.classList.remove('disabled');
-            }
-            if (nextProject) {
-                nextProject.disabled = false;
-                nextProject.classList.remove('disabled');
-            }
+            prevProject.disabled = false;
+            prevProject.classList.remove('disabled');
+            nextProject.disabled = false;
+            nextProject.classList.remove('disabled');
         }
     }
     
     // Show notification
     function showNotification(message, type = 'info') {
+        // Use notification queue to prevent overlap
+        if (!window.notificationQueue) {
+            window.notificationQueue = [];
+        }
+        
+        // Add to queue
+        window.notificationQueue.push({ message, type });
+        
+        // Process queue if not already processing
+        if (!window.processingNotifications) {
+            processNotificationQueue();
+        }
+    }
+    
+    function processNotificationQueue() {
+        if (!window.notificationQueue || window.notificationQueue.length === 0) {
+            window.processingNotifications = false;
+            return;
+        }
+        
+        window.processingNotifications = true;
+        const notification = window.notificationQueue.shift();
+        displayNotification(notification.message, notification.type);
+    }
+    
+    function displayNotification(message, type) {
         // Remove existing notification
         const existingNotification = document.querySelector('.portfolio-notification');
         if (existingNotification) {
@@ -1607,9 +1632,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(notification);
         
         // Add classes for animation
-        setTimeout(() => {
+        requestAnimationFrame(() => {
             notification.classList.add('show');
-        }, 10);
+        });
         
         // Close button
         const closeBtn = notification.querySelector('.notification-close');
@@ -1618,11 +1643,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 notification.classList.remove('show');
                 setTimeout(() => {
                     notification.remove();
+                    processNotificationQueue(); // Process next notification
                 }, 300);
             });
         }
         
-        // Auto close after 4 seconds
+        // Auto close after 3 seconds
         setTimeout(() => {
             if (document.body.contains(notification)) {
                 notification.classList.remove('show');
@@ -1630,9 +1656,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (document.body.contains(notification)) {
                         notification.remove();
                     }
+                    processNotificationQueue(); // Process next notification
                 }, 300);
             }
-        }, 4000);
+        }, 3000);
     }
     
     // Debounce function
@@ -1648,8 +1675,26 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
     
-    // Add notification styles
-    const notificationStyles = `
+    // Add necessary CSS styles
+    const portfolioStyles = `
+        /* Visibility classes for better transitions */
+        .port-box {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        
+        .port-box.hidden {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .port-box.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Rest of the styles remain the same */
         .portfolio-notification {
             position: fixed;
             bottom: 30px;
@@ -1720,76 +1765,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 max-width: none;
             }
         }
-        
-        /* Quick View Styles */
-        .quick-view-image {
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-        }
-        
-        .quick-view-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .quick-view-info {
-            padding: 25px;
-        }
-        
-        .quick-view-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--text-color);
-        }
-        
-        .quick-view-meta {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-color-light);
-        }
-        
-        .meta-item i {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-        }
-        
-        .quick-view-info p {
-            color: var(--text-color-light);
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-        
-        .view-full-details {
-            display: inline-flex;
-            align-items: center;
-            background: var(--primary-color);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .view-full-details:hover {
-            background: var(--accent-color);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
     `;
     
     // Add styles to head
     const styleElement = document.createElement('style');
-    styleElement.textContent = notificationStyles;
+    styleElement.textContent = portfolioStyles;
     document.head.appendChild(styleElement);
 });
 
