@@ -17,9 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initTypingEffect();
     init3DImageEffect();
     initParticles();
-    
-    // Add scroll-based animations
-    initScrollObserver();
 });
 // Split Text Animation
 function initTextAnimations() {
@@ -523,136 +520,268 @@ const animateCounter = (counter) => {
     
     updateCounter();
 };
-
-// About section - Enhanced team functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Check if elements are in viewport for animation
-    function checkVisibility() {
-        const teamCards = document.querySelectorAll('.about-team-card');
-        
-        teamCards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const isVisible = (
-                rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
-                rect.bottom >= 0
-            );
-            
-            if (isVisible) {
-                card.classList.add('animated');
-            }
-        });
-    }
+// About section
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialize counter animation
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
     
-    // Initialize the team filter buttons
-    const filterButtons = document.querySelectorAll('.team-filter-btn');
-    const teamCards = document.querySelectorAll('.about-team-card');
+    const observerOptions = {
+        threshold: 0.5
+    };
     
-    // Filter team members based on category
-    function filterTeamMembers(category) {
-        teamCards.forEach(card => {
-            if (category === 'all' || card.getAttribute('data-category') === category) {
-                card.style.display = 'block';
-                // Add a slight delay for smoother animations
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 100);
-            } else {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    card.style.display = 'none';
-                }, 300);
-            }
-        });
-    }
-    
-    // Add event listeners to filter buttons
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to clicked button
-            button.classList.add('active');
-            
-            // Filter team members
-            filterTeamMembers(button.getAttribute('data-filter'));
-        });
-    });
-    
-    // Add hover effects with mouse position tracking
-    teamCards.forEach(card => {
-        const cardContent = card.querySelector('.about-team-card-content');
-        
-        // 3D rotate effect based on mouse position
-        card.addEventListener('mousemove', (e) => {
-            if (window.innerWidth > 992) { // Only on larger screens
-                const cardRect = card.getBoundingClientRect();
-                const cardCenterX = cardRect.left + cardRect.width / 2;
-                const cardCenterY = cardRect.top + cardRect.height / 2;
-                const mouseX = e.clientX - cardCenterX;
-                const mouseY = e.clientY - cardCenterY;
-                
-                // Calculate rotation - subtle effect
-                const rotateY = mouseX * 0.05;
-                const rotateX = -mouseY * 0.05;
-                
-                // Apply transform - but only if not already flipped
-                if (!cardContent.classList.contains('flipped')) {
-                    cardContent.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    // Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('counter')) {
+                    const target = parseInt(entry.target.innerText);
+                    let count = 0;
+                    const updateCount = () => {
+                        const increment = target / speed;
+                        if (count < target) {
+                            count += increment;
+                            entry.target.innerText = Math.ceil(count);
+                            setTimeout(updateCount, 10);
+                        } else {
+                            entry.target.innerText = target;
+                        }
+                    };
+                    updateCount();
+                } else {
+                    entry.target.classList.add('show-items');
                 }
+                observer.unobserve(entry.target);
             }
         });
-        
-        // Reset transform on mouse leave
-        card.addEventListener('mouseleave', () => {
-            if (!cardContent.classList.contains('flipped')) {
-                cardContent.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-            }
-        });
-        
-        // Track flip state with a class
-        card.addEventListener('click', () => {
-            if (cardContent.style.transform.includes('rotateY(180deg)')) {
-                cardContent.classList.add('flipped');
-            } else {
-                cardContent.classList.remove('flipped');
-            }
-        });
+    }, observerOptions);
+    
+    // Observe all elements with scroll animation classes
+    document.querySelectorAll('.scroll-top, .scroll-bottom, .scroll-left, .scroll-right, .scroll-scale, .counter').forEach(element => {
+        observer.observe(element);
     });
     
-    // Initial check for visible elements
-    checkVisibility();
-    
-    // Check visibility on scroll
-    window.addEventListener('scroll', checkVisibility);
-    
-    // Add scroll-triggered parallax effect to team section
-    window.addEventListener('scroll', () => {
-        const teamSection = document.querySelector('.about-team-section');
-        const scrollPosition = window.scrollY;
-        
-        if (teamSection) {
-            const teamSectionTop = teamSection.offsetTop;
-            const teamSectionHeight = teamSection.offsetHeight;
-            const windowHeight = window.innerHeight;
-            
-            if (scrollPosition > teamSectionTop - windowHeight && 
-                scrollPosition < teamSectionTop + teamSectionHeight) {
-                
-                const parallaxOffset = (scrollPosition - (teamSectionTop - windowHeight)) * 0.05;
-                
-                // Apply parallax to decorative elements
-                const dots = document.querySelectorAll('.about-pattern-dots');
-                dots.forEach(dot => {
-                    dot.style.transform = `translate(${parallaxOffset}px, ${parallaxOffset}px)`;
-                });
-            }
-        }
+    // Add staggered animation for features
+    const features = document.querySelectorAll('.about-feature');
+    features.forEach((feature, index) => {
+        feature.style.opacity = '0';
+        feature.style.animation = `fadeInRight 0.6s ease forwards ${0.2 + index * 0.1}s`;
     });
 });
 
+// Team section
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize the filter system
+    initFilterSystem();
+    
+    // Initialize the card animations
+    initCardAnimations();
+    
+    // Handle mobile carousel
+    initMobileCarousel();
+    
+    // Position the filter indicator
+    positionFilterIndicator();
+    
+    // 3D tilt effect for cards
+    initCardTiltEffect();
+});
+
+function initFilterSystem() {
+    const filterButtons = document.querySelectorAll('.team-filter-btn');
+    const teamCards = document.querySelectorAll('.team-member-card');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Update active state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Update filter indicator position
+            positionFilterIndicator();
+            
+            // Filter the team members
+            const filterValue = button.getAttribute('data-filter');
+            
+            teamCards.forEach(card => {
+                // Reset animation for all cards
+                card.style.animation = 'none';
+                void card.offsetWidth; // Trigger reflow
+                
+                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                    card.style.display = 'block';
+                    
+                    // Apply staggered animation with custom delay
+                    const index = Array.from(teamCards).indexOf(card);
+                    card.style.animation = `fadeInUp 0.8s forwards ${index * 0.1}s`;
+                } else {
+                    // Fade out cards that don't match the filter
+                    card.style.animation = 'fadeOut 0.4s forwards';
+                    setTimeout(() => {
+                        if (card.getAttribute('data-category') !== filterValue) {
+                            card.style.display = 'none';
+                        }
+                    }, 400);
+                }
+            });
+        });
+    });
+}
+
+function positionFilterIndicator() {
+    const activeButton = document.querySelector('.team-filter-btn.active');
+    const indicator = document.querySelector('.team-filter-indicator');
+    
+    if (activeButton && indicator) {
+        indicator.style.width = `${activeButton.offsetWidth}px`;
+        indicator.style.height = `${activeButton.offsetHeight}px`;
+        indicator.style.left = `${activeButton.offsetLeft}px`;
+    }
+}
+
+function initCardAnimations() {
+    const teamCards = document.querySelectorAll('.team-member-card');
+    
+    // Initial entry animation
+    teamCards.forEach((card, index) => {
+        card.style.animation = `fadeInUp 0.8s forwards ${index * 0.1}s`;
+    });
+    
+    // Handle card flip on hover or touch (for mobile)
+    teamCards.forEach(card => {
+        const flipIcon = card.querySelector('.member-flip-icon');
+        const cardInner = card.querySelector('.team-card-inner');
+        
+        flipIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cardInner.style.transform = 
+                cardInner.style.transform === 'rotateY(180deg)' ? 
+                'rotateY(0deg)' : 'rotateY(180deg)';
+        });
+        
+        // Reset flip on mouse leave
+        card.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 768) {
+                cardInner.style.transform = 'rotateY(0deg)';
+            }
+        });
+    });
+}
+
+function initMobileCarousel() {
+    const carouselControls = document.querySelector('.team-carousel-controls');
+    const teamGrid = document.querySelector('.team-members-grid');
+    const prevBtn = document.querySelector('.team-carousel-control.prev');
+    const nextBtn = document.querySelector('.team-carousel-control.next');
+    const dots = document.querySelectorAll('.carousel-dot');
+    
+    if (carouselControls && teamGrid && window.innerWidth <= 768) {
+        let currentPage = 0;
+        const cards = document.querySelectorAll('.team-member-card');
+        const totalPages = Math.ceil(cards.length / 2);
+        
+        // Update the view based on current page
+        function updateCarouselView() {
+            cards.forEach((card, index) => {
+                if (index >= currentPage * 2 && index < (currentPage + 1) * 2) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.5s forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentPage);
+            });
+        }
+        
+        // Initialize the carousel
+        updateCarouselView();
+        
+        // Handle navigation
+        prevBtn.addEventListener('click', () => {
+            currentPage = (currentPage > 0) ? currentPage - 1 : totalPages - 1;
+            updateCarouselView();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentPage = (currentPage + 1) % totalPages;
+            updateCarouselView();
+        });
+        
+        // Handle dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentPage = index;
+                updateCarouselView();
+            });
+        });
+    }
+}
+
+function initCardTiltEffect() {
+    const cards = document.querySelectorAll('.team-card-front');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 992) { // Only on large screens
+                const cardRect = card.getBoundingClientRect();
+                const x = e.clientX - cardRect.left;
+                const y = e.clientY - cardRect.top;
+                
+                const xMid = cardRect.width / 2;
+                const yMid = cardRect.height / 2;
+                
+                // Calculate the percentage of movement through the card
+                const xPercent = (x - xMid) / xMid;
+                const yPercent = (y - yMid) / yMid;
+                
+                // Apply subtle tilt effect
+                card.style.transform = `perspective(1000px) rotateY(${xPercent * 3}deg) rotateX(${yPercent * -3}deg) scale(1.02)`;
+                
+                // Add a subtle shadow based on mouse position
+                card.style.boxShadow = `
+                    ${-xPercent * 10}px ${-yPercent * 10}px 20px rgba(0,0,0,0.05),
+                    0 10px 20px rgba(0,0,0,0.1)
+                `;
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            // Reset transform and shadow
+            card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) scale(1)';
+            card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+        });
+    });
+}
+
+// Add this for responsive
+window.addEventListener('resize', () => {
+    positionFilterIndicator();
+    
+    // Reinitialize mobile carousel if needed
+    if (window.innerWidth <= 768) {
+        initMobileCarousel();
+    }
+});
+
+// Add fade out animation
+document.head.insertAdjacentHTML('beforeend', `
+    <style>
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+    </style>
+`);
 // Portfolio Section - Advanced Implementation
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
