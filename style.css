@@ -2647,6 +2647,357 @@ line-height: 1.7;
 margin-bottom: 25px;
 }
 
+/* ======================================================
+    OFFERS SECTION - RTL VERSION
+    ====================================================== */
+.subscription-section {
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .subscription-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+    
+    .subscription-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    
+    .subscription-section.visible .main-text {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    
+    .subscription-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    perspective: 1000px;
+    }
+    
+    .plan-card {
+    position: relative;
+    width: 320px;
+    min-height: 550px;
+    background: var(--bg-color-alt);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: transform 0.5s var(--animation-curve), box-shadow 0.5s var(--animation-curve);
+    transform: translateZ(0) rotateY(-30deg) scale(0.9);
+    opacity: 0;
+    transform-origin: center;
+    }
+    
+    .subscription-section.visible .plan-card.animate {
+    animation: cardEntry 0.8s var(--animation-curve) forwards;
+    animation-delay: calc(var(--card-index) * 0.2s + 0.4s);
+    }
+    
+    .plan-card:hover {
+    transform: translateY(-10px) rotateY(0deg) scale(1.02);
+    box-shadow: var(--card-shadow);
+    z-index: 2;
+    }
+    
+    .plan-card.featured {
+    border: 2px solid var(--primary-color);
+    transform: translateY(-15px) rotateY(-30deg) scale(0.9);
+    }
+    
+    .subscription-section.visible .plan-card.featured.animate {
+    animation: featuredCardEntry 0.8s #111 forwards;
+    animation-delay: 0.6s;
+    }
+    
+    .plan-card.featured:hover {
+    transform: translateY(-25px) rotateY(0deg) scale(1.02);
+    }
+    
+    .popular-badge {
+    position: absolute;
+    top: 20px;
+    left: -35px;
+    background: var(--primary-gradient);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 5px 40px;
+    transform: rotate(-45deg);
+    z-index: 1;
+    box-shadow: var(--shadow-sm);
+    letter-spacing: 0.5px;
+    }
+    
+    .subs-card-content {
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    }
+    
+    .subs-card-title-wrapper {
+    position: relative;
+    height: 65px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    }
+    
+    .subs-card-title {
+    position: absolute;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    top: 0;
+    right: 0;
+    transform: translateX(-100%) translateY(-100%);
+    opacity: 0;
+    }
+    
+    .subscription-section.visible .plan-card.animate .subs-card-title {
+    animation: titleEntry 1s var(--animation-curve) forwards;
+    animation-delay: calc(var(--card-index) * 0.2s + 0.8s);
+    }
+    
+    .price {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: baseline;
+    }
+    
+    .amount {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--text-color);
+    }
+    
+    .period {
+    font-size: 1rem;
+    color: var(--text-color-light);
+    margin-right: 5px;
+    }
+    
+    .subs-features {
+    margin-bottom: 30px;
+    flex-grow: 1;
+    padding-right: 0;
+    list-style-type: none;
+    }
+    
+    .subs-features li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-right: 30px;
+    opacity: 0;
+    transform: translateX(20px);
+    }
+    
+    .subscription-section.visible .plan-card.animate .subs-features li {
+    animation: featureEntry 0.5s ease forwards;
+    animation-delay: calc(var(--card-index) * 0.2s + 1s + (var(--feature-index) * 0.1s));
+    }
+    
+    .subs-feature-icon {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--shadow-color);
+    display: inline-block;
+    opacity: 1;
+    }
+    
+    .subs-feature-icon::after {
+    content: "✓";
+    position: absolute;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    }
+    
+    .btn-subscribe {
+    padding: 15px 0;
+    border-radius: var(--border-radius);
+    background: var(--primary-gradient);
+    color: white;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s var(--animation-curve);
+    transform: translateY(20px);
+    opacity: 0;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    }
+    
+    .subscription-section.visible .plan-card.animate .btn-subscribe {
+    animation: buttonEntry 0.5s var(--animation-curve) forwards;
+    animation-delay: calc(var(--card-index) * 0.2s + 1.5s);
+    }
+    
+    .btn-subscribe:hover {
+    background: var(--primary-gradient-hover);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+    }
+    
+    /* Animations */
+    @keyframes cardEntry {
+    0% {
+        opacity: 0;
+        transform: translateZ(-200px) rotateY(-30deg) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateZ(0) rotateY(0deg) scale(1);
+    }
+    }
+    
+    @keyframes featuredCardEntry {
+    0% {
+        opacity: 0;
+        transform: translateZ(-200px) translateY(-15px) rotateY(-30deg) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateZ(0) translateY(-15px) rotateY(0deg) scale(1.05);
+    }
+    }
+    
+    @keyframes titleEntry {
+    0% {
+        transform: translateX(-100%) translateY(-100%);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(0%) translateY(20%);
+        opacity: 1;
+    }
+    80% {
+        transform: translateX(-10%) translateY(0%);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+    }
+    
+    @keyframes featureEntry {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
+    
+    @keyframes buttonEntry {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
+    
+    @keyframes floatSphere {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-30px, 30px);
+    }
+    100% {
+        transform: translate(-50px, 10px);
+    }
+    }
+    
+    /* Responsive styles */
+    @media (max-width: 1100px) {
+    .subscription-cards {
+        gap: 20px;
+    }
+    
+    .plan-card {
+        width: 280px;
+    }
+
+    h2 {
+        font-size: 2.4rem;
+    }
+    }
+    
+    @media (max-width: 768px) {
+    .subscription-section {
+        padding: 80px 0;
+    }
+
+    .subscription-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .plan-card {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+    
+    .plan-card.featured {
+        transform: translateY(0) rotateY(-30deg) scale(0.9);
+    }
+    
+    .plan-card.featured:hover {
+        transform: translateY(-10px) rotateY(0deg) scale(1.02);
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .main-text p {
+        font-size: 1rem;
+    }
+    }
+
+    @media (max-width: 480px) {
+    .subscription-section {
+        padding: 60px 0;
+    }
+    
+    .plan-card {
+        min-height: 520px;
+    }
+    
+    .amount {
+        font-size: 2.5rem;
+    }
+    
+    .subs-card-title {
+        font-size: 1.6rem;
+    }
+    }
+
 
 /* ======================================================
 PARTNERS SECTION

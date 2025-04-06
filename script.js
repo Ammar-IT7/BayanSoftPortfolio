@@ -1861,6 +1861,85 @@ document.addEventListener('DOMContentLoaded', function() {
     document.head.appendChild(styleElement);
 });
 
+// =======================OFFERS SECTION=================================
+document.addEventListener('DOMContentLoaded', function () {
+    const subscriptionSection = document.getElementById('subscription-plans');
+    const cards = document.querySelectorAll('.plan-card');
+  
+    // Set card and feature indices for staggered animations
+    cards.forEach((card, index) => {
+      card.style.setProperty('--card-index', index);
+  
+      const features = card.querySelectorAll('.subs-features li');
+      features.forEach((feature, featureIndex) => {
+        feature.style.setProperty('--feature-index', featureIndex);
+      });
+    });
+  
+    // Intersection Observer for subscription section
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // When section becomes visible
+            subscriptionSection.classList.add('visible');
+  
+            // Add animation class to cards
+            cards.forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('animate');
+              }, index * 200); // Staggered animation for cards
+            });
+          } else {
+            // When section goes out of view
+            subscriptionSection.classList.remove('visible');
+  
+            // Remove animation class from cards
+            cards.forEach((card) => {
+              card.classList.remove('animate');
+            });
+          }
+        });
+      },
+      {
+        root: null, // viewport
+        threshold: 0.1, // 10% of the section must be visible
+        rootMargin: '0px',
+      }
+    );
+  
+    // Start observing the subscription section
+    sectionObserver.observe(subscriptionSection);
+  
+    // Card 3D hover effect
+    cards.forEach((card) => {
+      card.addEventListener('mousemove', function (e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left; // x position within the element
+        const y = e.clientY - rect.top; // y position within the element
+  
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+  
+        const maxRotation = 5; // max rotation in degrees
+  
+        const rotateY = -maxRotation * (x - centerX) / centerX; // Reversed for RTL
+        const rotateX = -maxRotation * (y - centerY) / centerY;
+  
+        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+      });
+  
+      card.addEventListener('mouseleave', function () {
+        // Reset transform based on card type
+        if (this.classList.contains('featured')) {
+          this.style.transform = 'translateY(-15px) rotateY(0deg) scale(1.05)';
+        } else {
+          this.style.transform = 'rotateY(0deg) scale(1)';
+        }
+      });
+    });
+  });
+
 // القائمة النشطة
 const menuLinks = document.querySelectorAll('header ul li a');
 const sections = document.querySelectorAll('section');
