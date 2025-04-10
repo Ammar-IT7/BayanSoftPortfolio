@@ -332,7 +332,7 @@ function initParticles() {
                     }
                 },
                 "color": {
-                    "value": "#D03f4C"
+                    "value": "#EA8B2D"
                 },
                 "shape": {
                     "type": ["circle", "triangle", "edge"],
@@ -367,7 +367,7 @@ function initParticles() {
                 "line_linked": {
                     "enable": true,
                     "distance": 150,
-                    "color": "#D03f4C",
+                    "color": "#DC513C",
                     "opacity": 0.1,
                     "width": 1
                 },
