@@ -8,9 +8,9 @@ FONT IMPORTS
    ====================================================== */
    :root {
     /* ============ PRIMARY COLORS (Yellow/Orange) ============ */
-    --primary-color: #EA8B2D;         /* Vibrant orange-yellow (main brand color) */
+    --primary-color: #FF9F20;         /* Vibrant orange-yellow (main brand color) */
     --primary-light: hsl(29, 100%, 68%);         /* Bright, airy yellow */
-    --primary-dark: #DC513C;          /* Deep burnt orange (contrast) */
+    --primary-dark: #e48e1e;          /* Deep burnt orange (contrast) */
     --primary-rgb: 255, 167, 38;      /* RGB for animations/effects */
   
     /* ============ SECONDARY COLORS ============ */
