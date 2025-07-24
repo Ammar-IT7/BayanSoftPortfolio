@@ -176,7 +176,8 @@ const Dashboard: React.FC = () => {
         expiredLicenses: 0,
         duplicateClients: 0,
     expiringInWeek: 0,
-    expiringInMonth: 0
+    expiringInMonth: 0,
+    basicClients: 0
     });
     const [clientData, setClientData] = useState<ProcessedClient[]>([]);
     const [filteredData, setFilteredData] = useState<ProcessedClient[]>([]);
@@ -316,6 +317,12 @@ const Dashboard: React.FC = () => {
         // Get all duplicate client records
         const duplicateData = getDuplicateClientsWithDetails(clientData);
         return duplicateData.flatMap(group => group.records);
+      }
+      case 'basicClients': {
+        // Get all clients with Basic in product name
+        return clientData.filter(client => 
+          client.product && client.product.toLowerCase().includes('basic')
+        );
       }
       default: return [];
     }
@@ -638,6 +645,13 @@ const Dashboard: React.FC = () => {
           icon="🔄"
           color="#0891b2"
           onClick={() => handleCardClick('duplicateClients', 'العملاء المكررون')}
+        />
+                            <StatsCard
+          title="عملاء Basic"
+          value={stats.basicClients}
+          icon="📋"
+          color="#8b5cf6"
+          onClick={() => handleCardClick('basicClients', 'عملاء Basic')}
         />
       </StatsGrid>
 

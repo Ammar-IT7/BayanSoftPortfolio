@@ -371,6 +371,11 @@ export const calculateDashboardStats = (data: ProcessedClient[]): DashboardStats
         return expiryDate > now && expiryDate <= thirtyDaysFromNow;
     }).length;
 
+    // Calculate Basic clients
+    const basicClients = data.filter(client => 
+        client.product && client.product.toLowerCase().includes('basic')
+    ).length;
+
     return {
         totalClients,
         totalDevices,
@@ -379,7 +384,8 @@ export const calculateDashboardStats = (data: ProcessedClient[]): DashboardStats
         expiredLicenses,
         duplicateClients,
         expiringInWeek,
-        expiringInMonth
+        expiringInMonth,
+        basicClients
     };
 };
 

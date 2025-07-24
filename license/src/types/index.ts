@@ -34,6 +34,7 @@ export interface DashboardStats {
     duplicateClients: number;
     expiringInWeek: number;
     expiringInMonth: number;
+    basicClients: number;
 }
 
 export interface NotificationData {
